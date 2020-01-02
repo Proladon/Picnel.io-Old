@@ -12,9 +12,12 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         fw:AcrylicWindow.Enabled="True"
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
+        AllowsTransparency="True"
+        Opacity="0.85"
         MouseDown="Window_DragMove"
         >
-    <Grid x:Name="mainGrid" Focusable="True">
+    <Grid x:Name="mainGrid" Focusable="True" Background="#252A33">
         <Grid.RowDefinitions>
             <RowDefinition Height="27*"/>
             <RowDefinition Height="511*"/>
@@ -26,12 +29,22 @@
             <ColumnDefinition Width="214*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="Aquamarine">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#FF46FFDD">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="383*"/>
-                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="943*"/>
+                <ColumnDefinition Width="32*"/>
+                <ColumnDefinition Width="32*"/>
+                <ColumnDefinition Width="32*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Background="Red" Width="24" Click="Button_Click_1" HorizontalAlignment="Right"/>
+            <Button Grid.Column="1" Width="24" HorizontalAlignment="Right" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Click_2">
+                <Label Content="⚪" Foreground="#FFFFC500" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.IsSharedSizeScope="True"/>
+            </Button>
+            <Button Grid.Column="2"  Width="24" HorizontalAlignment="Right" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Click">
+                <Label Content="⚪" Foreground="#FF00D1FF" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.IsSharedSizeScope="True"/>
+            </Button>
+            <Button Grid.Column="3"  Width="24" Click="Button_Click_1" BorderBrush="{x:Null}" HorizontalAlignment="Right" Background="{x:Null}">
+                <Label Content="⚪" Foreground="#FFFD3068" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.IsSharedSizeScope="True"/>
+            </Button>
 
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1"  >
@@ -49,8 +62,8 @@
                 </Grid.ColumnDefinitions>
                 <Button Name="nextBtn" Grid.Column="0"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Content="Next" Background="#FF4DDEF5" FontSize="20" Click="nextBtn_Click"/>
-                <Button x:Name="deleteImg_Btn" Content="🗑" Grid.Column="1" Background="#FFFD3068" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E"/>
+                        Content="Next" Background="{x:Null}" FontSize="20" Click="nextBtn_Click" BorderBrush="{x:Null}"/>
+                <Button x:Name="deleteImg_Btn" Content="🗑" Grid.Column="1" Background="#FFFD3068" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}"/>
             </Grid >
         </Grid>
 
@@ -61,10 +74,10 @@
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="323*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Content="Choose Target Folder" Click="chooseTargetFolder_Btn_Click"/>
+            <Button Grid.Row="0" Content="Choose Target Folder" Click="chooseTargetFolder_Btn_Click" BorderBrush="#FFDDDDDD" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0"/>
             <Label Name="targetFolder_path" ToolTip="" Content="None" Grid.Row="1"
                        FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button Grid.Row="2" Content="Create Target" Click="CreateControl_Click"/>
+            <Button Grid.Row="2" Content="Create Target" Click="CreateControl_Click" BorderBrush="#FFDDDDDD"/>
             <ScrollViewer Grid.Row="3" Background="Gray" VerticalScrollBarVisibility="Hidden">
                 <StackPanel Name="control_panel"  >
                 </StackPanel>
@@ -75,8 +88,8 @@
                 <TextBlock Text="Welcome" Foreground="White" Margin="3,3"/>
             </StackPanel>
         </ScrollViewer>
-        <GridSplitter Width="2"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
-        <GridSplitter Width="2"  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
-        <GridSplitter Height="2" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  />
+        <GridSplitter Width="2"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="#252A33"/>
+        <GridSplitter Width="2"  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="#252A33"/>
+        <GridSplitter Height="2" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  Background="#FF5FFDE0"/>
     </Grid>
 </Window>

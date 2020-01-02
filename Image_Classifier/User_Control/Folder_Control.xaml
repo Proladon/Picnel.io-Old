@@ -20,7 +20,7 @@
         <Label x:Name="colorTag" Grid.Column="0" Background="Gray"/>
         <Label x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Button x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2" Click="moveTo_Btn_Click"/>
-        <Button x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3"/>
+        <Button x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3" Click="copyTo_Btn_Click"/>
         <Button x:Name="delete_Btn" Grid.Column="4" Click="delete_Btn_Click"/>
 
     </Grid>

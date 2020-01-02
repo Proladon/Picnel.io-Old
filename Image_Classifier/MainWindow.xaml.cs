@@ -107,13 +107,47 @@ namespace Image_Classifier
             if (imgFileName.Text != GloableOject.preFileName)
             {
                 // 重新命名
+                try
+                {
                 System.IO.File.Move(GloableOject.img_path, GloableOject.curPath+'\\'+imgFileName.Text);
                 GloableOject.logger($"[Renmae File] {GloableOject.img_filename} > {imgFileName.Text}");
                 System.IO.File.Delete(GloableOject.img_filename);
                 GloableOject.img_path = GloableOject.curPath + '\\' + imgFileName.Text;
                 GloableOject.img_filename = imgFileName.Text;
+                }
+                catch (System.IO.IOException)
+                {
+                    GloableOject.logger($"❌⚠ [Error] [ReName File] File Has Been Exsit.");
+                }
+                catch (System.ArgumentException)
+                {
+                    GloableOject.logger($"❌⚠ [Error] [ReName File] Can Not Empty File Name.");
+                }
+                finally
+                {
+                    imgFileName.Text = GloableOject.img_filename;
+                }
+
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (GloableOject.winState == "Normal")
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                GloableOject.winState = "Maximized";
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+                GloableOject.winState = "Normal";
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
     }
 }

@@ -35,9 +35,13 @@ namespace Image_Classifier.User_Control
         private void moveTo_Btn_Click(object sender, RoutedEventArgs e)
         {
             String newPath = folderPath.Content.ToString();
-            System.IO.File.Move(GloableOject.img_path, newPath + '\\' + GloableOject.img_filename);
-            GloableOject.logger($"📤 [Move File] - [{GloableOject.img_filename}] move to [{newPath + '\\'}]");
-            GloableOject.random_image(GloableOject.curPath);
+            GloableOject.moveTo(GloableOject.img_path, newPath);
+        }
+
+        private void copyTo_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            String newPath = folderPath.Content.ToString();
+            GloableOject.copyTo(GloableOject.img_path, newPath );
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfAnimatedGif;
 
@@ -16,6 +17,7 @@ namespace Image_Classifier.Classes
         public static String img_path = String.Empty;
         public static String preFileName = String.Empty;
         public static String img_filename = String.Empty;
+        public static String winState = "Normal";
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
 
@@ -24,6 +26,8 @@ namespace Image_Classifier.Classes
         {
             TextBlock log = new TextBlock();
             log.TextWrapping = System.Windows.TextWrapping.Wrap;
+            log.Margin = new System.Windows.Thickness(3, 3, 3, 3);
+            log.Foreground = new SolidColorBrush(Colors.Gray);
             log.Text = data;
             ((MainWindow)System.Windows.Application.Current.MainWindow).logViewer.Children.Add(log);
             ((MainWindow)System.Windows.Application.Current.MainWindow).log_scrollViewer.ScrollToEnd();
@@ -69,5 +73,34 @@ namespace Image_Classifier.Classes
                 GloableOject.logger($"❌ [Error] {error}");
             }
         }
+
+        public static void moveTo(string file, string path)
+        {
+            try
+            {
+                System.IO.File.Move(file, path + '\\' + GloableOject.img_filename);
+                random_image(curPath);
+                logger($"✔📤 [Move File] - [ {img_filename} ] move to [ {path + '\\'} ]");
+
+            }
+            catch (System.IO.IOException)
+            {
+                logger($"❌📤 [Error] [Move File] File Has Been Exsit In {path}.");
+            }
+        }
+        public static void copyTo(string file, string path)
+        {
+            try
+            {
+                System.IO.File.Copy(file, path + '\\' + GloableOject.img_filename);
+                logger($"✔📥 [Copy File] - [ {img_filename} ] copy to [ {path + '\\'} ]");
+            }
+            catch(System.IO.IOException)
+            {
+                logger($"❌📥 [Error] [Copy File] File Has Been Exsit In {path}.");
+            }
+        }
+
+
     }
 }
