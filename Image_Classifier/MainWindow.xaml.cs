@@ -47,51 +47,10 @@ namespace Image_Classifier
             this.Close();
         }
 
-        private void random_image(string path)
-        {
-
-            //System.IO.DirectoryNotFoundException
-            if (path == string.Empty)
-            {
-                return;
-            }
-            try
-            {
-                // 從資料夾中隨機選取一張圖片
-                string[] filePaths = Directory.GetFiles(path);
-                var ran = new Random();
-                int ran_index = ran.Next(filePaths.Length);
-                string fpath = filePaths[ran_index];
-                GloableOject.img_path = fpath;
-                GloableOject.img_filename = System.IO.Path.GetFileName(fpath);
-
-                //更改img_preview的圖片路徑
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(fpath);
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(img_preview, image);
-
-            }
-            catch(System.IO.DirectoryNotFoundException)
-            {
-                return;
-            }
-            catch(Exception error)
-            {
-                GloableOject.logger($"❌[Error] {error}");
-            }
-        }
-
-        private void switch_img()
-        {
-
-        }
-
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
             string path = targetFolder_path.Content.ToString();
-            random_image(path);
+            GloableOject.random_image(path);
             imgFileName.Text = GloableOject.img_filename;
         }
 
@@ -106,11 +65,11 @@ namespace Image_Classifier
             targetFolder_path.Content = sPath;
             targetFolder_path.ToolTip = sPath;
 
-            random_image(sPath);
-            imgFileName.Text = GloableOject.img_filename;
+            GloableOject.random_image(sPath);
+            //imgFileName.Text = GloableOject.img_filename;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CreateControl_Click(object sender, RoutedEventArgs e)
         {
             CreateControl_Dialog test_create = new CreateControl_Dialog();
             Window newWin = new Window
@@ -127,6 +86,16 @@ namespace Image_Classifier
         private void deleteImg_Btn_Click(object sender, RoutedEventArgs e)
         {
             // TODO Delete Image File
+            if (MessageBox.Show("Close Application?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                return;
+            }
+            else
+            {
+                System.IO.File.Delete(GloableOject.img_path);
+                GloableOject.logger($"♻🗑 [Delete File] - FileName: [ {GloableOject.img_filename} ]");
+                GloableOject.random_image(GloableOject.curPath);
+            }
         }
 
         private void imgFileName_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -137,23 +106,12 @@ namespace Image_Classifier
         {
             if (imgFileName.Text != GloableOject.preFileName)
             {
-                //切換空圖片
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(@"G:\Gif reply\GIF\move.gif");
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(img_preview, image);
                 // 重新命名
                 System.IO.File.Move(GloableOject.img_path, GloableOject.curPath+'\\'+imgFileName.Text);
                 GloableOject.logger($"[Renmae File] {GloableOject.img_filename} > {imgFileName.Text}");
                 System.IO.File.Delete(GloableOject.img_filename);
+                GloableOject.img_path = GloableOject.curPath + '\\' + imgFileName.Text;
                 GloableOject.img_filename = imgFileName.Text;
-                //切回原圖
-                var b = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(@"G:\Gif reply\GIF\move.gif");
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(img_preview, b);
             }
         }
 

@@ -16,6 +16,7 @@ using System.IO;
 using WinForms = System.Windows.Forms;
 using Image_Classifier.Classes;
 
+
 namespace Image_Classifier.User_Control
 {
     /// <summary>
@@ -49,7 +50,6 @@ namespace Image_Classifier.User_Control
             {
                 color = "#FFFFFF";
             }
-            Console.WriteLine("color: "+color);
             Folder_Control folder_control = new Folder_Control(); // 創建 Folder_Control 實例
             BrushConverter tagColor = new BrushConverter(); // 轉換顏色
             folder_control.colorTag.Background = (Brush)tagColor.ConvertFrom(color); // 設定Lable控件 colorTag 的顏色

@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Classifier"
         xmlns:us="clr-namespace:Image_Classifier.User_Control"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="MainWindow" Height="533" Width="1043"
+        Title="MainWindow" Height="599.64" Width="1043"
         WindowStyle="None"
-        MouseDown="Window_DragMove">
+        WindowStartupLocation="CenterScreen"
+        fw:AcrylicWindow.Enabled="True"
+        MouseDown="Window_DragMove"
+        >
     <Grid x:Name="mainGrid" Focusable="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="416*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="511*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150*"/>
@@ -46,7 +50,7 @@
                 <Button Name="nextBtn" Grid.Column="0"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                         Content="Next" Background="#FF4DDEF5" FontSize="20" Click="nextBtn_Click"/>
-                <Button x:Name="deleteImg_Btn" Grid.Column="1" Background="DeepPink" Click="deleteImg_Btn_Click"/>
+                <Button x:Name="deleteImg_Btn" Content="🗑" Grid.Column="1" Background="#FFFD3068" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E"/>
             </Grid >
         </Grid>
 
@@ -60,7 +64,7 @@
             <Button Grid.Row="0" Content="Choose Target Folder" Click="chooseTargetFolder_Btn_Click"/>
             <Label Name="targetFolder_path" ToolTip="" Content="None" Grid.Row="1"
                        FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button Grid.Row="2" Content="Create Target" Click="Button_Click"/>
+            <Button Grid.Row="2" Content="Create Target" Click="CreateControl_Click"/>
             <ScrollViewer Grid.Row="3" Background="Gray" VerticalScrollBarVisibility="Hidden">
                 <StackPanel Name="control_panel"  >
                 </StackPanel>

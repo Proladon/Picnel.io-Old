@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Image_Classifier.Classes;
+using WpfAnimatedGif;
 
 namespace Image_Classifier.User_Control
 {
@@ -24,10 +27,17 @@ namespace Image_Classifier.User_Control
         {
             InitializeComponent();
         }
-
         private void delete_Btn_Click(object sender, RoutedEventArgs e)
         {
             ((Panel)this.Parent).Children.Remove(this);
+        }
+
+        private void moveTo_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            String newPath = folderPath.Content.ToString();
+            System.IO.File.Move(GloableOject.img_path, newPath + '\\' + GloableOject.img_filename);
+            GloableOject.logger($"📤 [Move File] - [{GloableOject.img_filename}] move to [{newPath + '\\'}]");
+            GloableOject.random_image(GloableOject.curPath);
         }
     }
 }
