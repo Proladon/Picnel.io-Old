@@ -17,8 +17,8 @@ using WinForms = System.Windows.Forms; //FolderDialog
 using System.IO; //Folder, Directory
 using System.Diagnostics; //Debug.WriteLine
 using Image_Classifier.Classes;
-using WpfAnimatedGif;
 using Image_Classifier.User_Control;
+using XamlAnimatedGif;
 
 namespace Image_Classifier
 {
@@ -66,11 +66,8 @@ namespace Image_Classifier
                 GloableOject.img_filename = System.IO.Path.GetFileName(fpath);
 
                 //更改img_preview的圖片路徑
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(fpath);
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(img_preview, image);
+                Uri image = new Uri(fpath);
+                AnimationBehavior.SetSourceUri(img_preview, image);
 
             }
             catch(System.IO.DirectoryNotFoundException)
@@ -138,22 +135,16 @@ namespace Image_Classifier
             if (imgFileName.Text != GloableOject.preFileName)
             {
                 //切換空圖片
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(@"G:\Gif reply\GIF\move.gif");
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(img_preview, image);
+                Uri default_img = new Uri(@"G:\Gif reply\GIF\move.gif");
+                AnimationBehavior.SetSourceUri(img_preview, default_img);
                 // 重新命名
                 System.IO.File.Move(GloableOject.img_path, GloableOject.curPath+'\\'+imgFileName.Text);
                 GloableOject.logger($"[Renmae File] {GloableOject.img_filename} > {imgFileName.Text}");
                 System.IO.File.Delete(GloableOject.img_filename);
                 GloableOject.img_filename = imgFileName.Text;
                 //切回原圖
-                var b = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(@"G:\Gif reply\GIF\move.gif");
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(img_preview, b);
+                Uri b = new Uri(@"G:\Gif reply\GIF\move.gif");
+                AnimationBehavior.SetSourceUri(img_preview, b);
             }
         }
 

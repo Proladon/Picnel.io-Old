@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Classifier"
         xmlns:us="clr-namespace:Image_Classifier.User_Control"
-        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         mc:Ignorable="d"
         Title="MainWindow" Height="533" Width="1043"
         WindowStyle="None"
@@ -36,7 +36,7 @@
                 <RowDefinition Height="35*"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-            <Image Name="img_preview" Grid.Row="0" Grid.RowSpan="2" gif:ImageBehavior.AnimatedSource="G:\Gif reply\GIF\move.gif" />
+            <Image Name="img_preview" Grid.Row="0" Grid.RowSpan="2" gif:AnimationBehavior.SourceUri="G:\Gif reply\GIF\move.gif" />
             <TextBox Name="imgFileName"  Grid.Row="1" Text="FileName" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="True" GotKeyboardFocus="imgFileName_GotKeyboardFocus" LostKeyboardFocus="imgFileName_LostKeyboardFocus"/>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
