@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Image_Classifier.User_Control.Folder_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Image_Classifier.User_Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300" Margin="0,1">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="15*"/>
+
+        </Grid.ColumnDefinitions>
+        <Label x:Name="folderPath" Visibility="Hidden"/>
+        <Label x:Name="colorTag" Grid.Column="0" Background="Gray"/>
+        <Label x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2"/>
+        <Button x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3"/>
+        <Button x:Name="delete_Btn" Grid.Column="4" Click="delete_Btn_Click"/>
+
+    </Grid>
+</UserControl>
