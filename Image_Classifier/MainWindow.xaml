@@ -8,84 +8,140 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="MainWindow" Height="599.64" Width="1043"
+        Title="MainWindow" Height="600" Width="1080"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         fw:AcrylicWindow.Enabled="True"
         fw:AcrylicWindow.AcrylicWindowStyle="None"
         AllowsTransparency="True"
-        Opacity="0.85"
-        MouseDown="Window_DragMove"
+        Opacity="{Binding Value, ElementName=Opacity_slider}"
+        MouseDown="Window_DragMove" Background="{x:Null}"
         >
+    <Window.Resources>
+        <Style  x:Key="DefaultBtn" TargetType="Button" >
+            <Setter Property="Foreground" Value="Aqua"/>
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+
+        <Style x:Key="roundTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="Bd"  BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"  SnapsToDevicePixels="true"
+                        CornerRadius="12">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="#FF5FFDE0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="mainGrid" Focusable="True" Background="#252A33">
         <Grid.RowDefinitions>
-            <RowDefinition Height="27*"/>
-            <RowDefinition Height="511*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="163*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="649*"/>
-            <ColumnDefinition Width="214*" />
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="391*"/>
+            <ColumnDefinition Width="114*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#FF46FFDD">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#252A33">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="943*"/>
-                <ColumnDefinition Width="32*"/>
-                <ColumnDefinition Width="32*"/>
-                <ColumnDefinition Width="32*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="233*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Width="24" HorizontalAlignment="Right" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Click_2">
-                <Label Content="⚪" Foreground="#FFFFC500" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.IsSharedSizeScope="True"/>
+            <Image x:Name="icon" Grid.Column="0" Source="src\levels.png" Margin="5,1,1,1"/>
+            <TextBlock x:Name="Title" Text="Picnel.io - Path Control Image Classifier I/O" Grid.Column="1" Foreground="#FFB8B8B8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="15" FontFamily="Consolas" FontWeight="Bold" />
+            <Button Grid.Column="2" BorderBrush="{x:Null}" Background="{x:Null}" Click="winMinimized" Padding="0">
+                <TextBlock Text="⚪" Foreground="#FFFFC500" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
             </Button>
-            <Button Grid.Column="2"  Width="24" HorizontalAlignment="Right" BorderBrush="{x:Null}" Background="{x:Null}" Click="Button_Click">
-                <Label Content="⚪" Foreground="#FF00D1FF" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.IsSharedSizeScope="True"/>
+            <Button Grid.Column="3" BorderBrush="{x:Null}" Background="{x:Null}" Click="winMaximized" Padding="0">
+                <TextBlock Text="⚪" Foreground="#FF00D1FF" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
             </Button>
-            <Button Grid.Column="3"  Width="24" Click="Button_Click_1" BorderBrush="{x:Null}" HorizontalAlignment="Right" Background="{x:Null}">
-                <Label Content="⚪" Foreground="#FFFD3068" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.IsSharedSizeScope="True"/>
+            <Button Grid.Column="4" Click="Button_Click_1" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0">
+                <TextBlock Text="⚪" Foreground="#FFFD3068" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
             </Button>
-
         </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="212*"/>
+
+                <RowDefinition Height="29*"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Button Style="{StaticResource ButtonRoundAccentRevealStyle}" Content="Favorite" Margin="5" Grid.Row="0" Click="favorit_Btn_Click"/>
+            </StackPanel>
+            <Button x:Name="settings_Btn" Grid.Row="1" Content="⚙" FontSize="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF838383" Click="settings_Btn_Click"/>
+        </Grid>
+
+
         <Grid Grid.Row="1" Grid.Column="1"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="394*"/>
                 <RowDefinition Height="35*"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-            <Image Name="img_preview" Grid.Row="0" Grid.RowSpan="2" gif:ImageBehavior.AnimatedSource="G:\Gif reply\GIF\move.gif" />
-            <TextBox Name="imgFileName"  Grid.Row="1" Text="FileName" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="True" GotKeyboardFocus="imgFileName_GotKeyboardFocus" LostKeyboardFocus="imgFileName_LostKeyboardFocus"/>
+            <Image x:Name="normal_img_previewer" Grid.Row="0" Grid.RowSpan="2" Visibility="Visible" Source="src\pinterest_board_photo.png"/>
+            <Image x:Name="gif_previewer" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed" />
+            <TextBox Name="imgFileName" Style="{StaticResource roundTextBox}" Grid.Row="1" Text="FileName" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="True" GotKeyboardFocus="imgFileName_GotKeyboardFocus" LostKeyboardFocus="imgFileName_LostKeyboardFocus" Background="#FFB6B6B6" Margin="0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3,0" FontFamily="Consolas" FontWeight="Bold"/>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="613*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="664*"/>
+                    <ColumnDefinition Width="59*"/>
+                    <ColumnDefinition Width="59*"/>
                 </Grid.ColumnDefinitions>
                 <Button Name="nextBtn" Grid.Column="0"
+                        Style="{StaticResource ButtonAccentRevealStyle}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Content="Next" Background="{x:Null}" FontSize="20" Click="nextBtn_Click" BorderBrush="{x:Null}"/>
-                <Button x:Name="deleteImg_Btn" Content="🗑" Grid.Column="1" Background="#FFFD3068" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}"/>
+                        Content="Next" FontSize="20" Click="nextBtn_Click" Margin="0,0,0,5" FontFamily="Consolas" />
+                <Button x:Name="openImg_Btn" Content="📁"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="1" Background="#FF55ECF3" Click="openImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
+                <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
             </Grid >
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="2" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="323*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="366*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Content="Choose Target Folder" Click="chooseTargetFolder_Btn_Click" BorderBrush="#FFDDDDDD" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0"/>
-            <Label Name="targetFolder_path" ToolTip="" Content="None" Grid.Row="1"
-                       FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button Grid.Row="2" Content="Create Target" Click="CreateControl_Click" BorderBrush="#FFDDDDDD"/>
-            <ScrollViewer Grid.Row="3" Background="Gray" VerticalScrollBarVisibility="Hidden">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="89*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="Opacity_label" Text="100%" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontWeight="Bold"/>
+                <Slider x:Name="Opacity_slider" Minimum="0.1" Maximum="1" LargeChange="0.1" Value="0.8" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="5,10" Grid.ColumnSpan="2" Height="18"  ValueChanged="Opacity_slider_ValueChanged"/>
+            </Grid>
+            <Button Style="{StaticResource ButtonRoundAccentRevealStyle}" Grid.Row="1" Content="Choose Main Folder" Click="chooseTargetFolder_Btn_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="5" Foreground="#FF5FFDE0" FontFamily="Consolas" FontWeight="Bold" />
+            <TextBlock Name="targetFolder_path" ToolTip="" Text="None" Grid.Row="2"
+                       FontSize="15" Foreground="White" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontWeight="Bold" />
+            <Button Style="{StaticResource ButtonRoundAccentRevealStyle}" Grid.Row="3" Content="Create Target" Click="CreateControl_Click" Margin="5" Foreground="#FF5FFDE0" FontFamily="Consolas" FontWeight="Bold" />
+            <ScrollViewer Grid.Row="4" Background="Gray" VerticalScrollBarVisibility="Hidden" Margin="5" Grid.RowSpan="2">
                 <StackPanel Name="control_panel"  >
                 </StackPanel>
             </ScrollViewer>
         </Grid>
         <ScrollViewer x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
             <StackPanel x:Name="logViewer">
-                <TextBlock Text="Welcome" Foreground="White" Margin="3,3"/>
+                <TextBlock Text="🔰 [Version] - 0.0.1 ALPHA " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
+                <TextBlock Text="Logger: " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
         </ScrollViewer>
         <GridSplitter Width="2"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="#252A33"/>

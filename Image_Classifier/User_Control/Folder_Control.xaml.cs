@@ -34,13 +34,13 @@ namespace Image_Classifier.User_Control
 
         private void moveTo_Btn_Click(object sender, RoutedEventArgs e)
         {
-            String newPath = folderPath.Content.ToString();
+            String newPath = folderPath.Text.ToString();
             GloableOject.moveTo(GloableOject.img_path, newPath);
         }
 
         private void copyTo_Btn_Click(object sender, RoutedEventArgs e)
         {
-            String newPath = folderPath.Content.ToString();
+            String newPath = folderPath.Text.ToString();
             GloableOject.copyTo(GloableOject.img_path, newPath );
         }
     }

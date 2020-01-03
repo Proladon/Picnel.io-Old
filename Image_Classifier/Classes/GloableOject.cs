@@ -17,7 +17,11 @@ namespace Image_Classifier.Classes
         public static String img_path = String.Empty;
         public static String preFileName = String.Empty;
         public static String img_filename = String.Empty;
+        public static String file_ex = String.Empty;
         public static String winState = "Normal";
+        public static String[] normal_img = { ".jpg", ".jpeg", ".png" };
+        public static String[] gif_img = { ".gif" };
+        public static String[] video = { ".mp4", ".avi" };
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
 
@@ -27,10 +31,12 @@ namespace Image_Classifier.Classes
             TextBlock log = new TextBlock();
             log.TextWrapping = System.Windows.TextWrapping.Wrap;
             log.Margin = new System.Windows.Thickness(3, 3, 3, 3);
+            log.FontFamily = new FontFamily("Consolas Bold");
+            log.FontSize = 15;
             log.Foreground = new SolidColorBrush(Colors.Gray);
             log.Text = data;
-            ((MainWindow)System.Windows.Application.Current.MainWindow).logViewer.Children.Add(log);
-            ((MainWindow)System.Windows.Application.Current.MainWindow).log_scrollViewer.ScrollToEnd();
+            mainWin.logViewer.Children.Add(log);
+            mainWin.log_scrollViewer.ScrollToEnd();
         }
 
         public static void random_image(string path)
@@ -50,27 +56,62 @@ namespace Image_Classifier.Classes
                 string fpath = filePaths[ran_index];
                 GloableOject.img_path = fpath;
                 GloableOject.img_filename = System.IO.Path.GetFileName(fpath);
+                GloableOject.file_ex = Path.GetExtension(img_filename).ToLower();
 
-                //更改img_preview的圖片路徑
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = new Uri(fpath);
-                image.EndInit();
-                ImageBehavior.SetAnimatedSource(((MainWindow)System.Windows.Application.Current.MainWindow).img_preview, image);
-                mainWin.imgFileName.Text = GloableOject.img_filename;
+                // 判斷檔案類型 使用哪種圖片顯示器
+                if (normal_img.Contains(file_ex))
+                {
+                    // 使用 原生Image  更改img_preview的圖片路徑
+                    
+                    mainWin.gif_previewer.Visibility = System.Windows.Visibility.Collapsed;
+                    mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Visible;
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.DecodePixelWidth = 400;
+                    image.UriSource = new Uri(fpath);
+                    image.EndInit();
+                    mainWin.normal_img_previewer.Source = image;
+                    GC.Collect();
+                }
+                else if (gif_img.Contains(file_ex))
+                {
+                    WpfAnimatedGif.ImageBehavior.SetAutoStart(mainWin.gif_previewer, true);
+                    mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Collapsed;
+                    mainWin.gif_previewer.Visibility = System.Windows.Visibility.Visible;
+                    // 使用 wpfGIF 更改img_preview的圖片路徑
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.DecodePixelWidth = 100;
+                    image.UriSource = new Uri(fpath);
+                    image.EndInit();
+                    ImageBehavior.SetAnimatedSource(mainWin.gif_previewer, image);
+                    GC.Collect();
+                }
+                else if (video.Contains(file_ex))
+                {
+                    logger("⚠ [Warning] - Not Support Video Files Yet.");
+                    return;
+                }
+                else
+                {
+                    logger($"⚠ [Warning] - Not Support {file_ex} Files.");
+                }
+            mainWin.imgFileName.Text = GloableOject.img_filename;
+
             }
             catch (System.IO.DirectoryNotFoundException)
             {
-                GloableOject.logger($"❌ [Error] NotFound Directory. Pls Choose The Main Directoy");
+                GloableOject.logger($"❌ [Error] - NotFound Directory. Pls Choose The Main Directoy");
             }
             catch (System.IndexOutOfRangeException)
             {
-                GloableOject.logger($"❌ [Error] No File in this Directory.");
+                GloableOject.logger($"❌ [Error] - No File in this Directory.");
             }
             catch (Exception error)
             {
-                GloableOject.logger($"❌ [Error] {error}");
+                GloableOject.logger($"❌ [Error] - {error}");
             }
         }
 
@@ -85,7 +126,7 @@ namespace Image_Classifier.Classes
             }
             catch (System.IO.IOException)
             {
-                logger($"❌📤 [Error] [Move File] File Has Been Exsit In {path}.");
+                logger($"❌📤 [Error] [Move File] - File Has Been Exsit In {path}.");
             }
         }
         public static void copyTo(string file, string path)

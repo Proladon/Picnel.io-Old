@@ -16,12 +16,12 @@
             <ColumnDefinition Width="15*"/>
 
         </Grid.ColumnDefinitions>
-        <Label x:Name="folderPath" Visibility="Hidden"/>
-        <Label x:Name="colorTag" Grid.Column="0" Background="Gray"/>
-        <Label x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Button x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2" Click="moveTo_Btn_Click"/>
-        <Button x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3" Click="copyTo_Btn_Click"/>
-        <Button x:Name="delete_Btn" Grid.Column="4" Click="delete_Btn_Click"/>
+        <TextBlock x:Name="folderPath" Visibility="Collapsed"/>
+        <TextBlock x:Name="colorTag" Grid.Column="0" Background="Gray"/>
+        <TextBlock x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Style="{StaticResource ButtonAccentRevealStyle}" x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2" Click="moveTo_Btn_Click"/>
+        <Button Style="{StaticResource ButtonAccentRevealStyle}" x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3" Click="copyTo_Btn_Click"/>
+        <Button x:Name="delete_Btn" Content="❌" Grid.Column="4" Click="delete_Btn_Click" Background="#FFF35580" BorderBrush="#FFF35580" Foreground="#FFECECEC"/>
 
     </Grid>
 </UserControl>

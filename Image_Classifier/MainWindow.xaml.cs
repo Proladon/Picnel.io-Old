@@ -19,6 +19,7 @@ using System.Diagnostics; //Debug.WriteLine
 using Image_Classifier.Classes;
 using WpfAnimatedGif;
 using Image_Classifier.User_Control;
+using System.Threading;
 
 namespace Image_Classifier
 {
@@ -30,7 +31,9 @@ namespace Image_Classifier
         public MainWindow()
         {
             InitializeComponent();
+            WpfAnimatedGif.ImageBehavior.SetAutoStart(gif_previewer, false);
         }
+        
         private void Window_DragMove(object sender, MouseButtonEventArgs e)
         {
             try
@@ -49,7 +52,7 @@ namespace Image_Classifier
 
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
-            string path = targetFolder_path.Content.ToString();
+            string path = targetFolder_path.Text.ToString();
             GloableOject.random_image(path);
             imgFileName.Text = GloableOject.img_filename;
         }
@@ -59,14 +62,18 @@ namespace Image_Classifier
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
             folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
-            folderDialog.ShowDialog();
+            WinForms.DialogResult result = folderDialog.ShowDialog();
+            if (result == WinForms.DialogResult.Cancel)
+            {
+                return;
+            }
             String sPath = folderDialog.SelectedPath;
             GloableOject.curPath = sPath;
-            targetFolder_path.Content = sPath;
+            targetFolder_path.Text = sPath;
             targetFolder_path.ToolTip = sPath;
 
             GloableOject.random_image(sPath);
-            //imgFileName.Text = GloableOject.img_filename;
+            GloableOject.logger($"✔⚙ [Set Main Directory] - Path: [ {sPath} ]");
         }
 
         private void CreateControl_Click(object sender, RoutedEventArgs e)
@@ -75,29 +82,17 @@ namespace Image_Classifier
             Window newWin = new Window
             {
                 Title = "Create test",
-                Height = 200,
-                Width = 500,
+                Height = 300,
+                Width = 600,
                 Content = test_create,
+                WindowStyle = WindowStyle.None,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+                
 
             };
             newWin.ShowDialog();
         }
-
-        private void deleteImg_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO Delete Image File
-            if (MessageBox.Show("Close Application?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-            {
-                return;
-            }
-            else
-            {
-                System.IO.File.Delete(GloableOject.img_path);
-                GloableOject.logger($"♻🗑 [Delete File] - FileName: [ {GloableOject.img_filename} ]");
-                GloableOject.random_image(GloableOject.curPath);
-            }
-        }
-
+               
         private void imgFileName_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             GloableOject.preFileName = imgFileName.Text;
@@ -117,11 +112,11 @@ namespace Image_Classifier
                 }
                 catch (System.IO.IOException)
                 {
-                    GloableOject.logger($"❌⚠ [Error] [ReName File] File Has Been Exsit.");
+                    GloableOject.logger($"❌⚠ [Error] [ReName File] - File Has Been Exsit.");
                 }
                 catch (System.ArgumentException)
                 {
-                    GloableOject.logger($"❌⚠ [Error] [ReName File] Can Not Empty File Name.");
+                    GloableOject.logger($"❌⚠ [Error] [ReName File] - Can Not Empty File Name.");
                 }
                 finally
                 {
@@ -131,7 +126,7 @@ namespace Image_Classifier
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void winMaximized(object sender, RoutedEventArgs e)
         {
             if (GloableOject.winState == "Normal")
             {
@@ -144,10 +139,59 @@ namespace Image_Classifier
                 GloableOject.winState = "Normal";
             }
         }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void winMinimized(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        private void Opacity_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            String value = Convert.ToString(Convert.ToInt32(Opacity_slider.Value * 100)) + '%';
+            Opacity_label.Text = value;
+        }
+
+        private void settings_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Sorry, Not Yet Complete.");
+        }
+
+        private void openImg_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(GloableOject.img_path))
+            {
+                Process.Start("explorer.exe", "/select, " + GloableOject.img_path);
+            }
+            else
+            {
+                GloableOject.logger($"❌📤 [Error] [Open File Location] - Can't Not Open, File Dosen't Exsit.");
+            }
+
+        }
+
+        private void deleteImg_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO Delete Image File
+            if (MessageBox.Show("Delete File Forever?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                return;
+            }
+            else
+            {
+                if (File.Exists(GloableOject.img_path))
+                {
+                    System.IO.File.Delete(GloableOject.img_path);
+                    GloableOject.logger($"♻🗑 [Delete File] - FileName: [ {GloableOject.img_filename} ]");
+                    GloableOject.random_image(GloableOject.curPath);
+                }
+                else
+                {
+                    GloableOject.logger($"❌🗑 [Error] [Delete File] - Can't Not Delete, File Dosen't Exsit.");
+                }
+            }
+        }
+        private void favorit_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Sorry, Not Yet Complete.");
         }
     }
 }

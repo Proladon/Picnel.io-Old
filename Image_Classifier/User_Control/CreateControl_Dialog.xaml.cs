@@ -40,7 +40,7 @@ namespace Image_Classifier.User_Control
             folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
             folderDialog.ShowDialog();
             String sPath = folderDialog.SelectedPath;
-            choseFolder_path.Content = sPath;
+            choseFolder_path.Text = sPath;
         }
 
         private void createBtn_Click(object sender, RoutedEventArgs e)
@@ -53,20 +53,27 @@ namespace Image_Classifier.User_Control
             Folder_Control folder_control = new Folder_Control(); // 創建 Folder_Control 實例
             BrushConverter tagColor = new BrushConverter(); // 轉換顏色
             folder_control.colorTag.Background = (Brush)tagColor.ConvertFrom(color); // 設定Lable控件 colorTag 的顏色
-            folder_control.akaLabel.Content = folderAKA_label.Text;
-            folder_control.folderPath.Content = choseFolder_path.Content;
+            folder_control.akaLabel.Text = folderAKA_label.Text;
+            folder_control.folderPath.Text = choseFolder_path.Text;
+            folder_control.ToolTip = choseFolder_path.Text;
             //將Folder_Control 實例 添加到 MainWindow 的 control_panel 中
             ((MainWindow)System.Windows.Application.Current.MainWindow).control_panel.Children.Add(folder_control); 
-            GloableOject.logger($"✔🕹[Create Target Folder Control] AKA :[{folderAKA_label.Text}] ; Path: [{choseFolder_path.Content}]");
+            GloableOject.logger($"✔🕹[Create Target Folder Control] AKA :[{folderAKA_label.Text}] ; Path: [{choseFolder_path.Text}]");
             // 清空此Dialog元件的所有訊息
             folderAKA_label.Text = string.Empty;
-            choseFolder_path.Content = string.Empty;
+            choseFolder_path.Text = string.Empty;
             choossColorBtn.SelectedColor = Color.FromRgb(255,255,255);
         }
 
         private void folderAKA_label_GotFocus(object sender, RoutedEventArgs e)
         {
             folderAKA_label.Text = string.Empty;
+        }
+
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainGrid.Focus();
+            Window.GetWindow(this).DragMove();
         }
     }
 }
