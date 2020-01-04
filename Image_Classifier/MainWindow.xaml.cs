@@ -26,7 +26,7 @@ namespace Image_Classifier
     /// <summary>
     /// MainWindow.xaml 的互動邏輯
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -199,7 +199,11 @@ namespace Image_Classifier
 
         private void favorit_Btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Sorry, Function Not Yet Complete.");
+            // MessageBox.Show("Sorry, Function Not Yet Complete.");
+            GloableOject.logger(img_row_1.Height.ToString());
+            GloableOject.logger(img_row_2.Height.ToString());
+            GloableOject.logger(img_row_3.Height.ToString());
+
         }
 
         // DarkMode 切換

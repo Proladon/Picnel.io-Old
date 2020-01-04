@@ -110,3 +110,5 @@ H:\Coding\GitKraken\Picnel.io\Image_Classifier\obj\Debug\Image_Classifier.csproj
 H:\Coding\GitKraken\Picnel.io\Image_Classifier\obj\Debug\Image_Classifier.csproj.CopyComplete
 H:\Coding\GitKraken\Picnel.io\Image_Classifier\obj\Debug\Image_Classifier.exe
 H:\Coding\GitKraken\Picnel.io\Image_Classifier\obj\Debug\Image_Classifier.pdb
+H:\Coding\GitKraken\Picnel.io\Image_Classifier\obj\Debug\User_Control\User_Settings.g.cs
+H:\Coding\GitKraken\Picnel.io\Image_Classifier\obj\Debug\User_Control\User_Settings.baml

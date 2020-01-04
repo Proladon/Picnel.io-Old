@@ -86,6 +86,9 @@
     <Compile Include="User_Control\Folder_Control.xaml.cs">
       <DependentUpon>Folder_Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\User_Settings.xaml.cs">
+      <DependentUpon>User_Settings.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User_Control\Folder_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Control\User_Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

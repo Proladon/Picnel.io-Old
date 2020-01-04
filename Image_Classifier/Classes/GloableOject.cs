@@ -21,7 +21,7 @@ namespace Image_Classifier.Classes
         public static String img_filename = String.Empty;
         public static String file_ex = String.Empty;
         public static String winState = "Normal";
-        public static String[] normal_img = { ".jpg", ".jpeg", ".png" };
+        public static String[] normal_img = { ".jpg", ".jpeg", ".png", ".bmp" };
         public static String[] gif_img = { ".gif" };
         public static String[] video = { ".mp4", ".avi" };
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
