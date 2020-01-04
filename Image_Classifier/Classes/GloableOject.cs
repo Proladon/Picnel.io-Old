@@ -25,8 +25,6 @@ namespace Image_Classifier.Classes
         public static String[] gif_img = { ".gif" };
         public static String[] video = { ".mp4", ".avi" };
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
-
-
         public static void logger(string data)
         {
             TextBlock log = new TextBlock();
