@@ -141,8 +141,13 @@
     <Resource Include="src\levels.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="src\logo_transparent.png" />
     <Resource Include="src\pinterest_board_photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\file_not_Support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\on_top.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:Image_Classifier.User_Control"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="300" Margin="0,1">
+    <UserControl.Resources>
+        <Style x:Key="controldelete" TargetType="Button" BasedOn="{StaticResource ButtonAccentRevealStyle}">
+            <Setter Property="Background" Value="#FFF35580"/>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="White">
+        
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="5*"/>
@@ -18,10 +24,10 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="folderPath" Visibility="Collapsed"/>
         <TextBlock x:Name="colorTag" Grid.Column="0" Background="Gray"/>
-        <TextBlock x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
         <Button Style="{StaticResource ButtonAccentRevealStyle}" x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2" Click="moveTo_Btn_Click"/>
         <Button Style="{StaticResource ButtonAccentRevealStyle}" x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3" Click="copyTo_Btn_Click"/>
-        <Button x:Name="delete_Btn" Content="❌" Grid.Column="4" Click="delete_Btn_Click" Background="#FFF35580" BorderBrush="#FFF35580" Foreground="#FFECECEC"/>
+        <Button Style="{StaticResource controldelete}" x:Name="delete_Btn" Content="❌" Grid.Column="4" Click="delete_Btn_Click" />
 
     </Grid>
 </UserControl>

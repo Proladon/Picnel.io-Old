@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/logo_transparent.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/pinterest_board_photo.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/on_top.png")]
 
 

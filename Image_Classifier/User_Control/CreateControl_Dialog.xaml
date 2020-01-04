@@ -35,8 +35,8 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="700*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Create Target Folder" FontSize="10" Grid.Row="0" Grid.ColumnSpan="2" Foreground="#FF858585" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="folderAKA_label" Text="A.K.A" Background="#252A33" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GotFocus="folderAKA_label_GotFocus" Margin="7" Foreground="#FFCDCDCD" BorderBrush="{x:Null}"  />
+        <TextBlock Text="Create Target Folder" FontSize="10" Grid.Row="0" Grid.ColumnSpan="2" Foreground="#FF858585" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas"/>
+        <TextBox x:Name="folderAKA_label" Text="A.K.A" Background="#252A33" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GotFocus="folderAKA_label_GotFocus" Margin="7" Foreground="#FFCDCDCD" BorderBrush="{x:Null}" FontFamily="Consolas"  />
         <xctk:ColorPicker x:Name="choossColorBtn" Grid.Column="0" Grid.Row="1" ShowDropDownButton="False" Margin="3" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" ColorMode="ColorCanvas" SelectedColor="Gray"/>
         <Button Content="Chose Folder" Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Click="Button_Click" Margin="0" Foreground="#FF5FFDE0" FontSize="15" FontFamily="Consolas" FontWeight="Bold"/>
         <TextBlock x:Name="choseFolder_path" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCDCDCD"/>

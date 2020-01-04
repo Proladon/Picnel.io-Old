@@ -13,6 +13,8 @@ namespace Image_Classifier.Classes
 {
     public class GloableOject
     {
+        public static Boolean darkmode = true;
+        public static Boolean topmost = false;
         public static String curPath = @"K:\MainFolder\Wallpaper";
         public static String img_path = String.Empty;
         public static String preFileName = String.Empty;
@@ -23,7 +25,6 @@ namespace Image_Classifier.Classes
         public static String[] gif_img = { ".gif" };
         public static String[] video = { ".mp4", ".avi" };
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
-
 
 
         public static void logger(string data)
@@ -37,6 +38,19 @@ namespace Image_Classifier.Classes
             log.Text = data;
             mainWin.logViewer.Children.Add(log);
             mainWin.log_scrollViewer.ScrollToEnd();
+        }
+
+        public static BitmapImage change_src(string path)
+        {
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.DecodePixelWidth = 400;
+            image.UriSource = new Uri(path);
+            image.EndInit();
+            mainWin.normal_img_previewer.Source = image;
+            GC.Collect();
+            return image;
         }
 
         public static void random_image(string path)
@@ -62,15 +76,9 @@ namespace Image_Classifier.Classes
                 if (normal_img.Contains(file_ex))
                 {
                     // 使用 原生Image  更改img_preview的圖片路徑
-                    
                     mainWin.gif_previewer.Visibility = System.Windows.Visibility.Collapsed;
                     mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Visible;
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.DecodePixelWidth = 400;
-                    image.UriSource = new Uri(fpath);
-                    image.EndInit();
+                    BitmapImage image = change_src(fpath);
                     mainWin.normal_img_previewer.Source = image;
                     GC.Collect();
                 }
@@ -80,22 +88,19 @@ namespace Image_Classifier.Classes
                     mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Collapsed;
                     mainWin.gif_previewer.Visibility = System.Windows.Visibility.Visible;
                     // 使用 wpfGIF 更改img_preview的圖片路徑
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.DecodePixelWidth = 100;
-                    image.UriSource = new Uri(fpath);
-                    image.EndInit();
+                    BitmapImage image = change_src(fpath);
                     ImageBehavior.SetAnimatedSource(mainWin.gif_previewer, image);
                     GC.Collect();
                 }
                 else if (video.Contains(file_ex))
                 {
+                    mainWin.normal_img_previewer.Source = new BitmapImage(new Uri(@"\src\file_not_Support.png", UriKind.Relative));
                     logger("⚠ [Warning] - Not Support Video Files Yet.");
                     return;
                 }
                 else
                 {
+                    mainWin.normal_img_previewer.Source = new BitmapImage(new Uri(@"\src\file_not_Support.png", UriKind.Relative));
                     logger($"⚠ [Warning] - Not Support {file_ex} Files.");
                 }
             mainWin.imgFileName.Text = GloableOject.img_filename;
@@ -128,6 +133,10 @@ namespace Image_Classifier.Classes
             {
                 logger($"❌📤 [Error] [Move File] - File Has Been Exsit In {path}.");
             }
+            catch (System.ArgumentException)
+            {
+                logger($"❌📥 [Error] [Move File] - File Doesn't Exsit.");
+            }
         }
         public static void copyTo(string file, string path)
         {
@@ -138,7 +147,11 @@ namespace Image_Classifier.Classes
             }
             catch(System.IO.IOException)
             {
-                logger($"❌📥 [Error] [Copy File] File Has Been Exsit In {path}.");
+                logger($"❌📥 [Error] [Copy File] - File Has Been Exsit In {path}.");
+            }
+            catch(System.ArgumentException)
+            {
+                logger($"❌📥 [Error] [Copy File] - File Doesn't Exsit.");
             }
         }
 
