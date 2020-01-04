@@ -56,6 +56,7 @@ namespace Image_Classifier.User_Control
             folder_control.akaLabel.Text = folderAKA_label.Text;
             folder_control.folderPath.Text = choseFolder_path.Text;
             folder_control.ToolTip = choseFolder_path.Text;
+            folder_control.akaLabel.FontFamily = new FontFamily("Consolas Bold");
             //將Folder_Control 實例 添加到 MainWindow 的 control_panel 中
             ((MainWindow)System.Windows.Application.Current.MainWindow).control_panel.Children.Add(folder_control); 
             GloableOject.logger($"✔🕹[Create Target Folder Control] AKA :[{folderAKA_label.Text}] ; Path: [{choseFolder_path.Text}]");
