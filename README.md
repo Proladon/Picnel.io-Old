@@ -14,3 +14,6 @@ Allow you pinned target folder to the UI and with commonly used option like `Cop
 #### Darkmode / Brightmode
 ![img](https://github.com/Proladon/Picnel.io/blob/master/preview/dark.png)
 ![img](https://github.com/Proladon/Picnel.io/blob/master/preview/bright.png)
+
+### Copy File
+![img](https://github.com/Proladon/Picnel.io/blob/master/preview/preview_1.gif)
