@@ -100,7 +100,7 @@ namespace Image_Classifier.User_Control {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Image_Classifier;component/user_control/folder_control.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Picnel.io;component/user_control/folder_control.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\User_Control\Folder_Control.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

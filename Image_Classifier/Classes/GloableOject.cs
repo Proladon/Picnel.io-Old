@@ -24,6 +24,8 @@ namespace Image_Classifier.Classes
         public static String[] normal_img = { ".jpg", ".jpeg", ".png", ".bmp" };
         public static String[] gif_img = { ".gif" };
         public static String[] video = { ".mp4", ".avi" };
+        public static BitmapSource img = null;
+
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
         public static void logger(string data)
         {
@@ -77,6 +79,7 @@ namespace Image_Classifier.Classes
                     mainWin.gif_previewer.Visibility = System.Windows.Visibility.Collapsed;
                     mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Visible;
                     BitmapImage image = change_src(fpath);
+                    img = image;
                     mainWin.normal_img_previewer.Source = image;
                     GC.Collect();
                 }
@@ -87,6 +90,7 @@ namespace Image_Classifier.Classes
                     mainWin.gif_previewer.Visibility = System.Windows.Visibility.Visible;
                     // 使用 wpfGIF 更改img_preview的圖片路徑
                     BitmapImage image = change_src(fpath);
+                    img = image;
                     ImageBehavior.SetAnimatedSource(mainWin.gif_previewer, image);
                     GC.Collect();
                 }

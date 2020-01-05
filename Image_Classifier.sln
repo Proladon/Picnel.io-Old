@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image_Classifier", "Image_Classifier\Image_Classifier.csproj", "{F75FD7E6-BFC3-4180-B521-ABD6C5FD3823}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picnel.io", "Image_Classifier\Picnel.io.csproj", "{F75FD7E6-BFC3-4180-B521-ABD6C5FD3823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -271,5 +271,46 @@ namespace Image_Classifier
         {
             this.Opacity = 1;
         }
+
+        private void copyBtn_LostFocus(object sender, RoutedEventArgs e)
+        {
+            copyBtn.IsChecked = false;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(GloableOject.img_path == String.Empty)
+            {
+                GloableOject.logger($"❌📑 [Error] [Copy File Path] - No File Exsit.");
+            }
+            else
+            {
+                Clipboard.SetText(GloableOject.img_path);
+                GloableOject.logger($"✔📑 [Error] [Copy File Path] - Copy [ {GloableOject.img_path} ] To ClipBoard.");
+                copyBtn.IsChecked = false;
+            }
+        }
+
+        private void copy_img_Click(object sender, RoutedEventArgs e)
+        {
+            if (GloableOject.img == null)
+            {
+                copyBtn.IsChecked = false;
+                GloableOject.logger("❌📑 [Error] [Copy Image] - No Image Exsit.");
+                return;
+            }
+            else
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = new Uri(GloableOject.img_path);
+                image.EndInit();
+                Clipboard.SetImage(image);
+                GC.Collect();
+                GloableOject.logger($"✔📑 [Copy Image] - Copy [ {GloableOject.img_filename} ] To ClipBoard.");
+                copyBtn.IsChecked = false;
+            }
+        }
     }
 }

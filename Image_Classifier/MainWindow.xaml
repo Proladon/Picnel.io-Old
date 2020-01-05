@@ -22,7 +22,7 @@
         x:Name="appWindow"
         >
 
-<Window.Resources>
+    <Window.Resources>
         <!-- DefaultBtn -->
         <Style  x:Key="DefaultBtn" TargetType="Button" >
             <Setter Property="BorderBrush" Value="{x:Null}"/>
@@ -49,7 +49,7 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="#252A33"/>
         </Style>
-        
+
         <!-- Slider -->
         <Style TargetType="{x:Type Thumb}" x:Key="SliderThumb_img">
             <Setter Property="Template">
@@ -137,11 +137,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="toggle_Btn" TargetType="ToggleButton">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5,3"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#252A33"/>
+        </Style>
+
     </Window.Resources>
+
 
     <!-- Base Layout -->
     <Grid x:Name="baseGrid" Focusable="True">
-        <Grid x:Name="mainGrid" Background="{StaticResource dark}" Opacity="{Binding Value, ElementName=Opacity_slider}" >
+        <Grid x:Name="mainGrid" Background="{StaticResource dark}" Opacity="{Binding Value, ElementName=Opacity_slider}" Focusable="True">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="main_row_1" Height="30*"/>
                 <RowDefinition x:Name="main_row_2" Height="481*"/>
@@ -153,7 +162,7 @@
                 <ColumnDefinition x:Name="main_column_3" Width="114*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" Grid.ColumnSpan="3" >
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" Focusable="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="28*"/>
                     <ColumnDefinition Width="873*"/>
@@ -178,7 +187,7 @@
                 </Button>
             </Grid>
 
-            <Grid Grid.Column="0" Grid.Row="1" >
+            <Grid Grid.Column="0" Grid.Row="1" Focusable="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="212*"/>
                     <RowDefinition Height="29*"/>
@@ -186,13 +195,20 @@
                 <StackPanel>
                     <Button Style="{StaticResource toolsBtn}" Content="🤍" ToolTip="Favorite" Click="favorit_Btn_Click"/>
                     <Button Style="{StaticResource toolsBtn}" Content="🌙" ToolTip="Dark Mode" Click="darkMode_Click"/>
+                    <Button Style="{StaticResource toolsBtn}"  Content="📑" ToolTip="Copy" />
+                    <ToggleButton Style="{StaticResource toggle_Btn}" Name="copyBtn" Content="📑" LostFocus="copyBtn_LostFocus"/>
+                    <Popup x:Name="tool_pop" PlacementTarget="{Binding ElementName=copyBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=copyBtn}">
+                        <StackPanel>
+                            <Button x:Name="copy_path" Content="📑 Full Path" Width="100" Height="50" Click="Button_Click_2" Focusable="False"/>
+                            <Button x:Name="copy_img" Content="📑 Image" Width="100" Height="50" Focusable="False" Click="copy_img_Click"/>
+                        </StackPanel>
+                    </Popup>
                     <Button Style="{StaticResource toolsBtn}" Content="🌎" ToolTip="WebSite" Click="Button_Click"/>
                 </StackPanel>
                 <Button x:Name="settings_Btn" Grid.Row="1" Content="⚙" FontSize="25" Style="{StaticResource ButtonAccentRevealStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF838383" Click="settings_Btn_Click"/>
             </Grid>
 
-
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="1" Focusable="True">
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="img_row_1" Height="404*"/>
                     <RowDefinition x:Name="img_row_2" Height="36*"/>
@@ -203,7 +219,8 @@
                 <!--TextBox Name="imgFileName" Style="{StaticResource roundTextBox}" Grid.Row="1" Text="FileName" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="True" GotKeyboardFocus="imgFileName_GotKeyboardFocus" LostKeyboardFocus="imgFileName_LostKeyboardFocus" Background="#FFB6B6B6" Margin="0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3,0" FontFamily="Consolas" FontWeight="Bold" Foreground="#FF202020"/-->
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="664*"/>
+                        <ColumnDefinition Width="601*"/>
+                        <ColumnDefinition Width="59*"/>
                         <ColumnDefinition Width="59*"/>
                         <ColumnDefinition Width="59*"/>
                     </Grid.ColumnDefinitions>
@@ -211,8 +228,8 @@
                         Style="{StaticResource ButtonAccentRevealStyle}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                         Content="Next" FontSize="20" Click="nextBtn_Click" Margin="0,0,0,5" FontFamily="Consolas" />
-                    <Button x:Name="openImg_Btn" Content="📁"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="1" Background="#FF55ECF3" Click="openImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
-                    <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
+                    <Button x:Name="openImg_Btn" Content="📁"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FF55ECF3" Click="openImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
+                    <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="3" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
                 </Grid >
             </Grid>
 
@@ -241,9 +258,9 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
-            <ScrollViewer x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+            <ScrollViewer Focusable="True" x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="logViewer">
-                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.0 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
+                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.1 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                     <TextBlock x:Name="logger_label" Text="Logger: " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                 </StackPanel>
             </ScrollViewer>
@@ -282,7 +299,7 @@
                        Visibility="Collapsed"
                        Focusable="True"
                        Opacity="{Binding Value, ElementName=img_opacity_slider}"/>
-                <Grid >
+                <Grid Focusable="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="83*"/>
                         <RowDefinition Height="322*"/>
