@@ -33,16 +33,19 @@ namespace Image_Classifier.User_Control
             Window.GetWindow(this).Close();
         }
 
+        // 選擇資料夾 Choose Target Folder
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
+            folderDialog.ShowNewFolderButton = true;
             folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
             folderDialog.ShowDialog();
             String sPath = folderDialog.SelectedPath;
             choseFolder_path.Text = sPath;
         }
 
+        // 確認創建 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
             string color = Convert.ToString(choossColorBtn.SelectedColor); // 取得選取顏色
@@ -58,7 +61,7 @@ namespace Image_Classifier.User_Control
             folder_control.ToolTip = choseFolder_path.Text;
             folder_control.akaLabel.FontFamily = new FontFamily("Consolas Bold");
             //將Folder_Control 實例 添加到 MainWindow 的 control_panel 中
-            ((MainWindow)System.Windows.Application.Current.MainWindow).control_panel.Children.Add(folder_control); 
+            GloableOject.mainWin.control_panel.Children.Add(folder_control); 
             GloableOject.logger($"✔🕹[Create Target Folder Control] AKA :[{folderAKA_label.Text}] ; Path: [{choseFolder_path.Text}]");
             // 清空此Dialog元件的所有訊息
             folderAKA_label.Text = string.Empty;

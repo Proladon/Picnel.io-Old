@@ -9,6 +9,11 @@
                 <!--  FluentWPF Controls  -->
                 <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <!--  Resource -->
+            <!--  color -->
+            <SolidColorBrush x:Key="dark" Color="#252A33"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

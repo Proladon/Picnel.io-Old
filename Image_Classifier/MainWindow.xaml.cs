@@ -178,10 +178,20 @@ namespace Image_Classifier
             Opacity_label.Text = value;
         }
 
-        // 設定按鈕 Settings Button
+        // 使用者設定按鈕 Settings Button
         private void settings_Btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Sorry, Not Yet Complete.");
+            User_Settings user_settings = new User_Settings();
+            Window newWin = new Window
+            {
+                Title = "Create test",
+                Height = 500,
+                Width = 600,
+                Content = user_settings,
+                WindowStyle = WindowStyle.None,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            newWin.ShowDialog();
         }
 
         // 開啟檔案位置按鈕 Open File Location
@@ -200,10 +210,7 @@ namespace Image_Classifier
         private void favorit_Btn_Click(object sender, RoutedEventArgs e)
         {
             // MessageBox.Show("Sorry, Function Not Yet Complete.");
-            GloableOject.logger(img_row_1.Height.ToString());
-            GloableOject.logger(img_row_2.Height.ToString());
-            GloableOject.logger(img_row_3.Height.ToString());
-
+            User_Settings user_setting_dialog = new User_Settings();
         }
 
         // DarkMode 切換
@@ -237,21 +244,32 @@ namespace Image_Classifier
             System.Diagnostics.Process.Start("https://github.com/Proladon/Image_Classifier_WPF");
         }
 
+        // 至頂視窗 Most On Top
         private void topmostBtn_Click(object sender, RoutedEventArgs e)
         {
             SolidColorBrush dark = new SolidColorBrush(Color.FromRgb(37, 42, 51));
             if (GloableOject.topmost == false)
             {
-                this.Topmost = true;
+                appWindow.Topmost = true;
                 GloableOject.topmost = true;
                 topmose_Btn.Style = this.FindResource("ontop") as Style;
             }
             else
             {
-                this.Topmost = false;
+                appWindow.Topmost = false;
                 GloableOject.topmost = false;
                 topmose_Btn.Style = this.FindResource("DefaultBtn") as Style;
             }
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            this.Opacity = 0.8;
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            this.Opacity = 1;
         }
     }
 }

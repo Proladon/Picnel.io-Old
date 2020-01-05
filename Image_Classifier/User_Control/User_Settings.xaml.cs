@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Image_Classifier.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace Image_Classifier.User_Control
         public User_Settings()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
+
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Window.GetWindow(this).DragMove();
         }
     }
 }
