@@ -2,6 +2,9 @@
 FH:\Coding\GitKraken\Picnel.io\Picnel.io\App.xaml;;
 FH:\Coding\GitKraken\Picnel.io\Picnel.io\MainWindow.xaml;;
 FH:\Coding\GitKraken\Picnel.io\Picnel.io\User_Controls\CreateControl_Dialog.xaml;;
+FH:\Coding\GitKraken\Picnel.io\Picnel.io\User_Controls\Create_Favorite.xaml;;
+FH:\Coding\GitKraken\Picnel.io\Picnel.io\User_Controls\Favorite.xaml;;
+FH:\Coding\GitKraken\Picnel.io\Picnel.io\User_Controls\Favorite_Setting.xaml;;
 FH:\Coding\GitKraken\Picnel.io\Picnel.io\User_Controls\Folder_Control.xaml;;
 FH:\Coding\GitKraken\Picnel.io\Picnel.io\User_Controls\User_Settings.xaml;;
 

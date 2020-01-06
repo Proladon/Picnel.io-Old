@@ -78,3 +78,10 @@ H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Picnel.io.csproj.GenerateResou
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Picnel.io.csproj.CopyComplete
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Picnel.io.exe
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Picnel.io.pdb
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Favorite.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Favorite_Setting.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\GeneratedInternalTypeHelper.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Favorite.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Favorite_Setting.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Create_Favorite.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Create_Favorite.baml

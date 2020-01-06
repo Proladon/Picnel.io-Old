@@ -45,5 +45,7 @@
             <Button Content="Cancel" Grid.Column="1" Style="{StaticResource ButtonAccentRevealStyle}" Foreground="White" FontFamily="Consolas" FontSize="15" Margin="5,5" Click="Button_Click"/>
         </Grid>
         <TextBlock Text="Not Yet Complete." Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="50" Foreground="White"/>
+        <WebBrowser Grid.Column="1" Grid.Row="1" Source="https://picnel-io.gitbook.io/picnel-io/"/>
+
     </Grid>
 </UserControl>

@@ -92,6 +92,7 @@ namespace Picnel.io
                 Height = 300,
                 Width = 600,
                 Content = test_create,
+                Topmost = true,
                 WindowStyle = WindowStyle.None,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
@@ -188,6 +189,7 @@ namespace Picnel.io
                 Height = 500,
                 Width = 600,
                 Content = user_settings,
+                Topmost = true,
                 WindowStyle = WindowStyle.None,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
@@ -207,10 +209,21 @@ namespace Picnel.io
             }
         }
 
+        // 最愛路徑 Favorite Path
         private void favorit_Btn_Click(object sender, RoutedEventArgs e)
         {
             // MessageBox.Show("Sorry, Function Not Yet Complete.");
-            User_Settings user_setting_dialog = new User_Settings();
+            Favorite_Setting user_settings = new Favorite_Setting();
+            Window newWin = new Window
+            {
+                Height = 500,
+                Width = 400,
+                Content = user_settings,
+                Topmost = true,
+                WindowStyle = WindowStyle.None,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            newWin.ShowDialog();
         }
 
         // DarkMode 切換
@@ -241,26 +254,10 @@ namespace Picnel.io
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Proladon/Image_Classifier_WPF");
+            //System.Diagnostics.Process.Start("https://github.com/Proladon/Image_Classifier_WPF");
         }
 
-        // 至頂視窗 Most On Top
-        private void topmostBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SolidColorBrush dark = new SolidColorBrush(Color.FromRgb(37, 42, 51));
-            if (GloableObject.topmost == false)
-            {
-                appWindow.Topmost = true;
-                GloableObject.topmost = true;
-                topmose_Btn.Style = this.FindResource("ontop") as Style;
-            }
-            else
-            {
-                appWindow.Topmost = false;
-                GloableObject.topmost = false;
-                topmose_Btn.Style = this.FindResource("DefaultBtn") as Style;
-            }
-        }
+
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
@@ -290,7 +287,7 @@ namespace Picnel.io
                 copyBtn.IsChecked = false;
             }
         }
-
+        
         private void copy_img_Click(object sender, RoutedEventArgs e)
         {
             if (GloableObject.img == null)
@@ -312,5 +309,36 @@ namespace Picnel.io
                 copyBtn.IsChecked = false;
             }
         }
+
+
+        // 至頂視窗 Most On Top
+        private void topmose_Btn_Checked(object sender, RoutedEventArgs e)
+        {
+            appWindow.Topmost = true;
+        }
+        private void topmose_Btn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            appWindow.Topmost = false;
+        }
+
+        /* Button 版本
+        private void topmostBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SolidColorBrush dark = new SolidColorBrush(Color.FromRgb(37, 42, 51));
+            if (GloableObject.topmost == false)
+            {
+                appWindow.Topmost = true;
+                GloableObject.topmost = true;
+                topmose_Btn.Style = this.FindResource("ontop") as Style;
+            }
+            else
+            {
+                appWindow.Topmost = false;
+                GloableObject.topmost = false;
+                topmose_Btn.Style = this.FindResource("DefaultBtn") as Style;
+            }
+        }
+        */
+
     }
 }

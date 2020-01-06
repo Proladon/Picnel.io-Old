@@ -81,6 +81,15 @@
     <Compile Include="User_Controls\CreateControl_Dialog.xaml.cs">
       <DependentUpon>CreateControl_Dialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User_Controls\Create_Favorite.xaml.cs">
+      <DependentUpon>Create_Favorite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Favorite.xaml.cs">
+      <DependentUpon>Favorite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Favorite_Setting.xaml.cs">
+      <DependentUpon>Favorite_Setting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Folder_Control.xaml.cs">
       <DependentUpon>Folder_Control.xaml</DependentUpon>
     </Compile>
@@ -100,6 +109,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="User_Controls\CreateControl_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Controls\Create_Favorite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Controls\Favorite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Controls\Favorite_Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

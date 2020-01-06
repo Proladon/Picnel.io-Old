@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Picnel.io.User_Controls.Favorite_Setting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Picnel.io.User_Controls"
+             mc:Ignorable="d" 
+             MouseDown="UserControl_MouseDown"
+             d:DesignHeight="450" d:DesignWidth="409.559">
+
+    <UserControl.Resources>
+        <Style x:Key="default_round_btn" TargetType="Button" BasedOn="{StaticResource ButtonRoundAccentRevealStyle}">
+            <Setter Property="FontFamily" Value="Consolas Bold"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource dark}" Focusable="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="318*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Favorite" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button Content="Create New Favorite"
+                Grid.Row="1" Foreground="{StaticResource blue_green}"
+                Style="{StaticResource default_round_btn}" Width="200" Height="25" />
+        <Button Content="Save Current"
+                Grid.Row="2" Foreground="{StaticResource blue_green}"
+                Style="{StaticResource default_round_btn}" Width="200" Height="25" Click="Button_Click_1" />
+
+        <ScrollViewer Grid.Row="3" Margin="5" Grid.RowSpan="2" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="favorite_panel">
+                <local:Favorite Height="60"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button Grid.Row="4" Content="Cancel" Foreground="{StaticResource blue_green}"
+                Style="{StaticResource default_round_btn}"
+                HorizontalAlignment="Right" Width="100" Click="Button_Click" />
+    </Grid>
+</UserControl>

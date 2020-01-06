@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Proladon\Desktop\Picnel.io\Picnel.io\obj\Debug\
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\
 Picnel.io
 none
 false
 DEBUG;TRACE
-C:\Users\Proladon\Desktop\Picnel.io\Picnel.io\App.xaml
-41926442711
+H:\Coding\GitKraken\Picnel.io\Picnel.io\App.xaml
+7-47927984
 
-10888718869
-212014399978
-MainWindow.xaml;User_Controls\CreateControl_Dialog.xaml;User_Controls\Folder_Control.xaml;User_Controls\User_Settings.xaml;
+13-1409023325
+211659851336
+MainWindow.xaml;User_Controls\CreateControl_Dialog.xaml;User_Controls\Create_Favorite.xaml;User_Controls\Favorite.xaml;User_Controls\Favorite_Setting.xaml;User_Controls\Folder_Control.xaml;User_Controls\User_Settings.xaml;
 
 True
 

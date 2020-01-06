@@ -18,7 +18,7 @@
         WindowStyle="None"
         Deactivated="Window_Deactivated"
         Activated="Window_Activated"
-        Background="Transparent"
+        Background="Transparent" 
         x:Name="appWindow"
         >
 
@@ -43,12 +43,14 @@
         </Style>
         <!-- /onTop -->
 
+        <!-- Tool Btn -->
         <Style  x:Key="toolsBtn" TargetType="Button" BasedOn="{StaticResource ButtonAccentRevealStyle}">
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="5,3"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="#252A33"/>
         </Style>
+        <!-- /Tool Btn -->
 
         <!-- Slider -->
         <Style TargetType="{x:Type Thumb}" x:Key="SliderThumb_img">
@@ -138,12 +140,16 @@
             </Setter>
         </Style>
 
+        <!-- Toggle Button -->
         <Style x:Key="toggle_Btn" TargetType="ToggleButton">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#80808080"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="5,3"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="#252A33"/>
         </Style>
+        <!-- / Toggle Button -->
 
     </Window.Resources>
 
@@ -173,9 +179,13 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="icon" Grid.Column="0" Source="src\levels.png" Margin="5,1,1,1"/>
                 <TextBlock x:Name="Title" Text="Picnel.io - Path Control Image Classifier I/O" Grid.Column="1" Foreground="#FFB8B8B8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,6,0,5" FontSize="15" FontFamily="Consolas" FontWeight="Bold" />
-                <Button x:Name="topmose_Btn" Style="{StaticResource DefaultBtn}" Grid.Column="2"  Padding="0,3,0,0" Click="topmostBtn_Click">
+                <ToggleButton x:Name="topmose_Btn" Grid.Column="2"
+                              Padding="0,3,0,0"
+                              Checked="topmose_Btn_Checked" Unchecked="topmose_Btn_Unchecked"
+                              BorderThickness="0"
+                              Background="{x:Null}">
                     <Image Source="src\on_top.png" />
-                </Button>
+                </ToggleButton>
                 <Button Grid.Column="3" Style="{StaticResource DefaultBtn}" Click="winMinimized" Padding="0">
                     <TextBlock Text="⚪" Foreground="#FFFFC500" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
                 </Button>
@@ -194,15 +204,16 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <Button Style="{StaticResource toolsBtn}" Content="🤍" ToolTip="Favorite" Click="favorit_Btn_Click"/>
-                    <Button Style="{StaticResource toolsBtn}" Content="🌙" ToolTip="Dark Mode" Click="darkMode_Click"/>
+                    <ToggleButton Style="{ StaticResource toggle_Btn}" Content="🌙" ToolTip="Dark Mode" Click="darkMode_Click"/>
                     <ToggleButton Style="{StaticResource toggle_Btn}" Name="copyBtn" Content="📑" LostFocus="copyBtn_LostFocus"/>
                     <Popup x:Name="tool_pop" PlacementTarget="{Binding ElementName=copyBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=copyBtn}">
                         <StackPanel>
-                            <Button x:Name="copy_path" Content="📑 Full Path" Width="100" Height="50" Click="Button_Click_2" Focusable="False"/>
-                            <Button x:Name="copy_img" Content="📑 Image" Width="100" Height="50" Focusable="False" Click="copy_img_Click"/>
+                            <Button x:Name="copy_path" Content="📑 Full Path" Width="100" Height="50" Click="Button_Click_2" Focusable="False" Opacity="0.7"/>
+                            <Button x:Name="copy_img" Content="📑 Image" Width="100" Height="50" Focusable="False" Click="copy_img_Click" Opacity="0.7"/>
                         </StackPanel>
                     </Popup>
                     <Button Style="{StaticResource toolsBtn}" Content="🌎" ToolTip="WebSite" Click="Button_Click"/>
+                    
                 </StackPanel>
                 <Button x:Name="settings_Btn" Grid.Row="1" Content="⚙" FontSize="25" Style="{StaticResource ButtonAccentRevealStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF838383" Click="settings_Btn_Click"/>
             </Grid>
@@ -221,14 +232,16 @@
                         <ColumnDefinition Width="601*"/>
                         <ColumnDefinition Width="59*"/>
                         <ColumnDefinition Width="59*"/>
-                        <ColumnDefinition Width="59*"/>
                     </Grid.ColumnDefinitions>
                     <Button Name="nextBtn" Grid.Column="0"
                         Style="{StaticResource ButtonAccentRevealStyle}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                         Content="Next" FontSize="20" Click="nextBtn_Click" Margin="0,0,0,5" FontFamily="Consolas" />
-                    <Button x:Name="openImg_Btn" Content="📁"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FF55ECF3" Click="openImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
-                    <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="3" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
+                    <Button x:Name="openImg_Btn" Content="📁" Grid.Column="1"
+                            Style="{StaticResource ButtonAccentRevealStyle}" 
+                            Background="#FF55ECF3" Foreground="#FF2E2E2E" BorderBrush="{x:Null}"
+                            Click="openImg_Btn_Click" FontSize="20"   Margin="0,0,0,5"/>
+                    <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5"/>
                 </Grid >
             </Grid>
 
@@ -298,6 +311,7 @@
                        Visibility="Collapsed"
                        Focusable="True"
                        Opacity="{Binding Value, ElementName=img_opacity_slider}"/>
+
                 <Grid Focusable="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="83*"/>
@@ -306,6 +320,8 @@
                     <Slider x:Name="img_opacity_slider" Style="{StaticResource hidden_slider}" Value="1" Maximum="1" Minimum="0" TickFrequency="10" LargeChange="0.1" Width="300"/>
                 </Grid>
                 <TextBox Name="imgFileName" Style="{StaticResource roundTextBox}" Grid.Row="1" Text="FileName" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="True" GotKeyboardFocus="imgFileName_GotKeyboardFocus" LostKeyboardFocus="imgFileName_LostKeyboardFocus" Background="#FFB6B6B6" Margin="0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3,0" FontFamily="Consolas" FontWeight="Bold" Foreground="#FF202020"/>
+                <WebBrowser x:Name="web" Source="https://www.google.com.tw/" Visibility="Collapsed"/>
+
             </Grid>
         </Grid>
     </Grid>

@@ -15,7 +15,7 @@ namespace Picnel.io.Classes
     public class GloableObject
     {
         public static Boolean darkmode = true;
-        public static Boolean topmost = false;
+        //public static Boolean topmost = false;
         public static String curPath = @"K:\MainFolder\Wallpaper";
         public static String img_path = String.Empty;
         public static String preFileName = String.Empty;
