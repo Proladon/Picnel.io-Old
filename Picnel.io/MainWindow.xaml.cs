@@ -91,7 +91,7 @@ namespace Picnel.io
             Window newWin = new Window
             {
                 Title = "Create test",
-                Height = 300,
+                Height = 250,
                 Width = 600,
                 Content = test_create,
                 Topmost = true,
@@ -291,8 +291,8 @@ namespace Picnel.io
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //System.Diagnostics.Process.Start("https://github.com/Proladon/Image_Classifier_WPF");
-            
+            System.Diagnostics.Process.Start("https://picnel-io.gitbook.io/picnel-io/");
+
         }
 
         // 複製工具
@@ -369,15 +369,27 @@ namespace Picnel.io
         // 清除所有設定
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.Current_Favorite = "None";
-            Properties.Settings.Default.Favorite_List = null;
-            Properties.Settings.Default.Favorite_Path_List = null;
-            Properties.Settings.Default.Favorite_Controls_List = null;
-            Properties.Settings.Default.Save();
+            if (MessageBox.Show("This Will Clean All Settings, Are You Sure?", "!!WARNING!!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                return;
+            }
+            else
+            {
+                Properties.Settings.Default.Current_Favorite = "None";
+                Properties.Settings.Default.Favorite_List = null;
+                Properties.Settings.Default.Favorite_Path_List = null;
+                Properties.Settings.Default.Favorite_Controls_List = null;
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void tools_toggle_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -92,7 +92,7 @@ namespace Picnel.io.User_Controls
                 }
                 favorite_path_list.Add(path_jsonStr); // 加入新資料
 
-                //TODO 更新控件
+                // 更新控件
                 // 刪除目前的
                 StringCollection favorite_controls_list = new StringCollection();
                 string target_controls = string.Empty;
