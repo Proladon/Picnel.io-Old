@@ -48,7 +48,9 @@ namespace Picnel.io.User_Controls
         // 確認創建 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
-            string color = Convert.ToString(choossColorBtn.SelectedColor); // 取得選取顏色
+            //string color = Convert.ToString(choossColorBtn.SelectedColor); // 取得選取顏色
+            string color = choossColorBtn.SelectedColorText;
+            GloableObject.logger(color);
             if (color == string.Empty)
             {
                 color = "#FFFFFF";

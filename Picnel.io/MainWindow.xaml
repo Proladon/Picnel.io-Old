@@ -18,6 +18,7 @@
         WindowStyle="None"
         Deactivated="Window_Deactivated"
         Activated="Window_Activated"
+        Closed="appWindow_Closed"
         Background="Transparent" 
         x:Name="appWindow"
         >
@@ -204,14 +205,18 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <Button Style="{StaticResource toolsBtn}" Content="🤍" ToolTip="Favorite" Click="favorit_Btn_Click"/>
-                    <ToggleButton Style="{ StaticResource toggle_Btn}" Content="🌙" ToolTip="Dark Mode" Click="darkMode_Click"/>
-                    <ToggleButton Style="{StaticResource toggle_Btn}" Name="copyBtn" Content="📑" LostFocus="copyBtn_LostFocus"/>
+                    <ToggleButton Content="🌙" ToolTip="Dark Mode" Style="{ StaticResource toggle_Btn}" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"/>
+                    <ToggleButton x:Name="copyBtn" Content="📑" Style="{StaticResource toggle_Btn}" LostFocus="copyBtn_LostFocus"/>
                     <Popup x:Name="tool_pop" PlacementTarget="{Binding ElementName=copyBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=copyBtn}">
                         <StackPanel>
                             <Button x:Name="copy_path" Content="📑 Full Path" Width="100" Height="50" Click="Button_Click_2" Focusable="False" Opacity="0.7"/>
                             <Button x:Name="copy_img" Content="📑 Image" Width="100" Height="50" Focusable="False" Click="copy_img_Click" Opacity="0.7"/>
                         </StackPanel>
                     </Popup>
+
+                    <ToggleButton x:Name="tools_toggle" Content="🛠" Style="{StaticResource toggle_Btn}"/>
+                    <Button Style="{StaticResource toolsBtn}" Content="♻" Click="Button_Click_3"/>
+                    <Button Style="{StaticResource toolsBtn}" Content="❔" Click="Button_Click_4"/>
                     <Button Style="{StaticResource toolsBtn}" Content="🌎" ToolTip="WebSite" Click="Button_Click"/>
                     
                 </StackPanel>
@@ -272,7 +277,7 @@
             </Grid>
             <ScrollViewer Focusable="True" x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="logViewer">
-                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.1 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
+                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.5 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                     <TextBlock x:Name="logger_label" Text="Logger: " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                 </StackPanel>
             </ScrollViewer>
@@ -320,7 +325,6 @@
                     <Slider x:Name="img_opacity_slider" Style="{StaticResource hidden_slider}" Value="1" Maximum="1" Minimum="0" TickFrequency="10" LargeChange="0.1" Width="300"/>
                 </Grid>
                 <TextBox Name="imgFileName" Style="{StaticResource roundTextBox}" Grid.Row="1" Text="FileName" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="True" GotKeyboardFocus="imgFileName_GotKeyboardFocus" LostKeyboardFocus="imgFileName_LostKeyboardFocus" Background="#FFB6B6B6" Margin="0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3,0" FontFamily="Consolas" FontWeight="Bold" Foreground="#FF202020"/>
-                <WebBrowser x:Name="web" Source="https://www.google.com.tw/" Visibility="Collapsed"/>
 
             </Grid>
         </Grid>

@@ -1,10 +1,12 @@
-﻿using Picnel.io;
+﻿using Newtonsoft.Json;
+using Picnel.io;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -14,13 +16,13 @@ namespace Picnel.io.Classes
 {
     public class GloableObject
     {
-        public static Boolean darkmode = true;
         //public static Boolean topmost = false;
-        public static String curPath = @"K:\MainFolder\Wallpaper";
-        public static String img_path = String.Empty;
-        public static String preFileName = String.Empty;
-        public static String img_filename = String.Empty;
-        public static String file_ex = String.Empty;
+
+        public static String curPath = string.Empty;
+        public static String img_path = string.Empty;
+        public static String preFileName = string.Empty;
+        public static String img_filename = string.Empty;
+        public static String file_ex = string.Empty;
         public static String winState = "Normal";
         public static String[] normal_img = { ".jpg", ".jpeg", ".png", ".bmp" };
         public static String[] gif_img = { ".gif" };
@@ -28,19 +30,30 @@ namespace Picnel.io.Classes
         public static BitmapSource img = null;
 
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
-        public static void logger(string data)
+
+        // 事件紀錄器 Logger
+        public static void logger(string data, string type="Normal")
         {
             TextBlock log = new TextBlock();
             log.TextWrapping = System.Windows.TextWrapping.Wrap;
             log.Margin = new System.Windows.Thickness(3, 3, 3, 3);
             log.FontFamily = new FontFamily("Consolas Bold");
             log.FontSize = 15;
-            log.Foreground = new SolidColorBrush(Colors.Gray);
+            if (type == "Normal")
+            {
+                log.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+            else if (type == "HighLight")
+            {
+                SolidColorBrush blue_green = (SolidColorBrush)Application.Current.FindResource("blue_green");
+                log.Foreground = blue_green;
+            }
             log.Text = data;
             mainWin.logViewer.Children.Add(log);
             mainWin.log_scrollViewer.ScrollToEnd();
         }
 
+        // 更換圖片路徑
         public static BitmapImage change_src(string path)
         {
             var image = new BitmapImage();
@@ -54,10 +67,9 @@ namespace Picnel.io.Classes
             return image;
         }
 
+        // 隨機圖片
         public static void random_image(string path)
         {
-
-            //System.IO.DirectoryNotFoundException
             if (path == string.Empty)
             {
                 return;
@@ -123,6 +135,7 @@ namespace Picnel.io.Classes
             }
         }
 
+        // 移動檔案操作 
         public static void moveTo(string file, string path)
         {
             try
@@ -141,6 +154,8 @@ namespace Picnel.io.Classes
                 logger($"❌📥 [Error] [Move File] - File Doesn't Exsit.");
             }
         }
+        
+        // 複製檔案操作
         public static void copyTo(string file, string path)
         {
             try
@@ -157,7 +172,5 @@ namespace Picnel.io.Classes
                 logger($"❌📥 [Error] [Copy File] - File Doesn't Exsit.");
             }
         }
-
-
     }
 }

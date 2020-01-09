@@ -16,32 +16,44 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="{StaticResource dark}" Focusable="True">
+    <Grid x:Name="favorite_settings_grid" Background="{StaticResource dark}" Focusable="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="23*"/>
             <RowDefinition Height="39*"/>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="318*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="278*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Favorite" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-        <Button Content="Create New Favorite"
-                Grid.Row="1" Foreground="{StaticResource blue_green}"
-                Style="{StaticResource default_round_btn}" Width="200" Height="25" />
-        <Button Content="Save Current"
-                Grid.Row="2" Foreground="{StaticResource blue_green}"
-                Style="{StaticResource default_round_btn}" Width="200" Height="25" Click="Button_Click_1" />
-
-        <ScrollViewer Grid.Row="3" Margin="5" Grid.RowSpan="2" VerticalScrollBarVisibility="Hidden">
-            <StackPanel x:Name="favorite_panel">
-                <local:Favorite Height="60"/>
-            </StackPanel>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Center">
+            <Button Content="Save Current"
+                    Width="150"
+                    Grid.Row="1" Foreground="{StaticResource blue_green}"
+                    Style="{StaticResource default_round_btn}" Click="Button_Click_1" />
+            <Button x:Name="create_new_btn" Content="Create New"
+                    Width="150"
+                    Foreground="{StaticResource blue_green}"
+                    Style="{StaticResource default_round_btn}" Click="create_new_btn_Click"/>
+        </DockPanel>
+        <TextBlock x:Name="cur_none" Text="Curernet: None" Grid.Row="2" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="20" Foreground="White" />
+        <Grid Grid.Row="2" Margin="10" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="65*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Background="White" Grid.RowSpan="3" IsHitTestVisible="False"/>
+            <Label x:Name="fcolor_tag" Background="#FF01FFAE" Grid.Row="0"/>
+            <TextBlock x:Name="favorite_aka" Text="Favorite" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" IsHitTestVisible="False"/>
+            <TextBlock x:Name="favorite_path" Text="K:\MainFolder\Wallpaper" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"/>
+        </Grid>
+        <ScrollViewer Grid.Row="3" Margin="5,7,5,5" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="favorite_list_panel"/>
         </ScrollViewer>
-
+        <Label Height="2" Background="{StaticResource blue_green}" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
         <Button Grid.Row="4" Content="Cancel" Foreground="{StaticResource blue_green}"
                 Style="{StaticResource default_round_btn}"
-                HorizontalAlignment="Right" Width="100" Click="Button_Click" />
+                HorizontalAlignment="Right" Width="100" Click="Button_Click" Margin="0,5,5,5" />
     </Grid>
 </UserControl>

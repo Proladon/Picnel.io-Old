@@ -7,15 +7,34 @@
              mc:Ignorable="d" 
              Margin="10,5"
              d:DesignHeight="110" d:DesignWidth="330">
+
+    <UserControl.Resources>
+        <Style x:Key="delete_btn" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource pink_red}"/>
+                    <Setter Property="Content" Value="❌"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="65*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <Button Grid.RowSpan="3"/>
-        <Label x:Name="favorite_color_tag" Background="#FF01FFAE" Grid.Row="0"/>
-        <TextBlock x:Name="favorite_aka" Text="Favorite" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" IsHitTestVisible="False"/>
-        <TextBlock x:Name="favorite_path" Text="K:\MainFolder\Wallpaper" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"/>
+        <Button x:Name="favorite_btn" Grid.RowSpan="3" Grid.ColumnSpan="2" BorderThickness="0" Click="Favorite_Click"/>
+        <Label x:Name="favorite_color_tag" Background="#FF01FFAE" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="favorite_aka" Text="Favorite" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" IsHitTestVisible="False" />
+        <TextBlock x:Name="favorite_path" Text="K:\MainFolder\Wallpaper" Grid.Row="2" Grid.ColumnSpan="2" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Button x:Name="favorite_delete_btn" Style="{StaticResource delete_btn}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Click="favorite_delete_btn_Click"/>
     </Grid>
 </UserControl>

@@ -85,3 +85,5 @@ H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Favorite.baml
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Favorite_Setting.baml
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Create_Favorite.g.cs
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Create_Favorite.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\Newtonsoft.Json.dll
+H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\Newtonsoft.Json.xml

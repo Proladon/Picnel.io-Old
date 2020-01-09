@@ -25,12 +25,47 @@ namespace Picnel.io.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Favorite_Path {
+        public global::System.Collections.Specialized.StringCollection Favorite_List {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Favorite_Path"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["Favorite_List"]));
             }
             set {
-                this["Favorite_Path"] = value;
+                this["Favorite_List"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DarkMode {
+            get {
+                return ((bool)(this["DarkMode"]));
+            }
+            set {
+                this["DarkMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Current_Favorite {
+            get {
+                return ((string)(this["Current_Favorite"]));
+            }
+            set {
+                this["Current_Favorite"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Favorite_Path_List {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Favorite_Path_List"]));
+            }
+            set {
+                this["Favorite_Path_List"] = value;
             }
         }
     }

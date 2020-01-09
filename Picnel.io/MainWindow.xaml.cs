@@ -20,6 +20,7 @@ using Picnel.io.Classes;
 using WpfAnimatedGif;
 using Picnel.io.User_Controls;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace Picnel.io
 {
@@ -53,7 +54,7 @@ namespace Picnel.io
         // Next按鈕 Next Button
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (GloableObject.img_filename == String.Empty)
+            if (GloableObject.img_filename == string.Empty)
             {
                 GloableObject.logger($"❌🔎 [Error][Loading File] - No File Exsit.");
                 return;
@@ -63,6 +64,7 @@ namespace Picnel.io
             imgFileName.Text = GloableObject.img_filename;
         }
 
+        // 選取主要路徑
         private void chooseTargetFolder_Btn_Click(object sender, RoutedEventArgs e)
         {
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
@@ -73,7 +75,7 @@ namespace Picnel.io
             {
                 return;
             }
-            String sPath = folderDialog.SelectedPath;
+            string sPath = folderDialog.SelectedPath;
             GloableObject.curPath = sPath;
             targetFolder_path.Text = sPath;
             targetFolder_path.ToolTip = sPath;
@@ -175,7 +177,7 @@ namespace Picnel.io
         // 視窗透明度 Windows Opacity
         private void Opacity_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            String value = Convert.ToString(Convert.ToInt32(Opacity_slider.Value * 100)) + '%';
+            string value = Convert.ToString(Convert.ToInt32(Opacity_slider.Value * 100)) + '%';
             Opacity_label.Text = value;
         }
 
@@ -212,71 +214,96 @@ namespace Picnel.io
         // 最愛路徑 Favorite Path
         private void favorit_Btn_Click(object sender, RoutedEventArgs e)
         {
-            // MessageBox.Show("Sorry, Function Not Yet Complete.");
-            Favorite_Setting user_settings = new Favorite_Setting();
+            Favorite_Setting favorite_settings = new Favorite_Setting();
             Window newWin = new Window
             {
                 Height = 500,
                 Width = 400,
-                Content = user_settings,
+                Content = favorite_settings,
                 Topmost = true,
                 WindowStyle = WindowStyle.None,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
+            
+            if (Properties.Settings.Default.Favorite_Path_List != null)
+            {
+                foreach (string favorite in Properties.Settings.Default.Favorite_List)
+                {
+                    Favorite favor = new Favorite();
+                    favor.Width = 300;
+                    favor.Height = 60;
+                    favor.favorite_aka.Text = favorite;
+               
+                    foreach (string path in Properties.Settings.Default.Favorite_Path_List)
+                    {
+                        string[] ary = path.Split(':','"');
+                        string key = ary[1].ToString();
+
+                        if (key == favorite)
+                        {
+                            Dictionary<string, string> favor_path_data = (Dictionary<string, string>)JsonConvert.DeserializeObject(path, typeof(Dictionary<string, string>));
+                            favor.favorite_path.Text = favor_path_data[favorite];
+                        }
+                    }
+                    favorite_settings.favorite_list_panel.Children.Add(favor);
+                }
+            }
+
+            if (Properties.Settings.Default.Current_Favorite != "None")
+            {
+                Favorite cur_favorite = new Favorite();
+                cur_favorite.favorite_aka.Text = Properties.Settings.Default.Current_Favorite;
+                cur_favorite.favorite_path.Text = GloableObject.curPath;
+                cur_favorite.favorite_delete_btn.IsHitTestVisible = false;
+                cur_favorite.favorite_btn.IsHitTestVisible = false;
+                Grid.SetRow(cur_favorite, 2);
+                favorite_settings.cur_none.Visibility = Visibility.Collapsed;
+                favorite_settings.favorite_settings_grid.Children.Add(cur_favorite);
+            }
+
             newWin.ShowDialog();
         }
 
         // DarkMode 切換
-        private void darkMode_Click(object sender, RoutedEventArgs e)
+        private void Mode_Change(SolidColorBrush color_1, SolidColorBrush color_2, bool toggle)
         {
-            SolidColorBrush dark = new SolidColorBrush(Color.FromRgb(37, 42, 51));
-            if (GloableObject.darkmode == true)
-            {
-                mainGrid.Background = Brushes.White;
-                controlPanel_Splitter.Background = Brushes.White;
-                targetFolder_path.Foreground = dark;
-                Opacity_label.Foreground = dark;
-                version_label.Foreground = dark;
-                logger_label.Foreground = dark;
-                GloableObject.darkmode = false;
-            }
-            else
-            {
-                mainGrid.Background = dark;
-                controlPanel_Splitter.Background = dark;
-                targetFolder_path.Foreground = Brushes.White;
-                Opacity_label.Foreground = Brushes.White;
-                version_label.Foreground = Brushes.White;
-                logger_label.Foreground = Brushes.White;
-                GloableObject.darkmode = true;
-            }
+            mainGrid.Background = color_2;
+            controlPanel_Splitter.Background = color_2;
+            targetFolder_path.Foreground = color_1;
+            Opacity_label.Foreground = color_1;
+            version_label.Foreground = color_1;
+            logger_label.Foreground = color_1;
+            Properties.Settings.Default.DarkMode = toggle;
         }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            
+            SolidColorBrush dark = (SolidColorBrush)Application.Current.FindResource("dark");
+            Mode_Change(dark, Brushes.White, true);
+        }
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SolidColorBrush dark = (SolidColorBrush)Application.Current.FindResource("dark");
+            Mode_Change(Brushes.White, dark, false);
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //System.Diagnostics.Process.Start("https://github.com/Proladon/Image_Classifier_WPF");
+            
         }
 
-
-
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
-            this.Opacity = 0.8;
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            this.Opacity = 1;
-        }
-
+        // 複製工具
         private void copyBtn_LostFocus(object sender, RoutedEventArgs e)
         {
             copyBtn.IsChecked = false;
         }
-
+        // 複製圖片路徑
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (GloableObject.img_path == String.Empty)
+            if (GloableObject.img_path == string.Empty)
             {
                 GloableObject.logger($"❌📑 [Error] [Copy File Path] - No File Exsit.");
             }
@@ -287,7 +314,7 @@ namespace Picnel.io
                 copyBtn.IsChecked = false;
             }
         }
-        
+        // 複製圖片
         private void copy_img_Click(object sender, RoutedEventArgs e)
         {
             if (GloableObject.img == null)
@@ -320,25 +347,39 @@ namespace Picnel.io
         {
             appWindow.Topmost = false;
         }
-
-        /* Button 版本
-        private void topmostBtn_Click(object sender, RoutedEventArgs e)
+        private void Window_Deactivated(object sender, EventArgs e)
         {
-            SolidColorBrush dark = new SolidColorBrush(Color.FromRgb(37, 42, 51));
-            if (GloableObject.topmost == false)
+            this.Opacity = 0.8;
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            this.Opacity = 1;
+        }
+
+        // 關閉程式
+        private void appWindow_Closed(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Current_Favorite = "None";
+            Properties.Settings.Default.Save();
+        }
+
+
+        // Settings Data Debug
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Current_Favorite = "None";
+            Properties.Settings.Default.Favorite_List = null;
+            Properties.Settings.Default.Favorite_Path_List = null;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            foreach (string p in Properties.Settings.Default.Favorite_List)
             {
-                appWindow.Topmost = true;
-                GloableObject.topmost = true;
-                topmose_Btn.Style = this.FindResource("ontop") as Style;
-            }
-            else
-            {
-                appWindow.Topmost = false;
-                GloableObject.topmost = false;
-                topmose_Btn.Style = this.FindResource("DefaultBtn") as Style;
+                GloableObject.logger(p);
             }
         }
-        */
-
     }
 }
