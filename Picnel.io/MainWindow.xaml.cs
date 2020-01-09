@@ -366,20 +366,18 @@ namespace Picnel.io
 
 
         // Settings Data Debug
+        // 清除所有設定
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Current_Favorite = "None";
             Properties.Settings.Default.Favorite_List = null;
             Properties.Settings.Default.Favorite_Path_List = null;
+            Properties.Settings.Default.Favorite_Controls_List = null;
             Properties.Settings.Default.Save();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            foreach (string p in Properties.Settings.Default.Favorite_List)
-            {
-                GloableObject.logger(p);
-            }
         }
     }
 }

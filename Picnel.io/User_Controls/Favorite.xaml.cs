@@ -61,11 +61,46 @@ namespace Picnel.io.User_Controls
         // 選擇Favorite
         private void Favorite_Click(object sender, RoutedEventArgs e)
         {
+
             GloableObject.mainWin.targetFolder_path.Text = this.favorite_path.Text;
             GloableObject.mainWin.targetFolder_path.ToolTip = this.favorite_path.Text;
             GloableObject.curPath = this.favorite_path.Text;
             GloableObject.random_image(GloableObject.curPath);
             Properties.Settings.Default.Current_Favorite = this.favorite_aka.Text;
+
+            // 控件
+
+            GloableObject.mainWin.control_panel.Children.Clear();
+
+            foreach (string name in Properties.Settings.Default.Favorite_Controls_List)
+            {
+                string[] ary = name.Split(':', '"');
+                string key = ary[1].ToString();
+                // 解第一層dict
+                if (key == this.favorite_aka.Text)
+                {
+                    // {"favorite_name":{"control_x":["color","aka","paht"], "control_x":["color","aka","paht"]}}
+                    Dictionary<string, Dictionary<string, List<string>>> favorite_controls_list = (Dictionary<string, Dictionary<string, List<string>>>)JsonConvert.DeserializeObject(name, typeof(Dictionary<string, Dictionary<string, List<string>>>));
+                    // "{control_x":["color","aka","paht"], "control_x":["color","aka","paht"]}
+                    Dictionary<string, List<string>> controls = favorite_controls_list[key];
+                    foreach (string control in controls.Keys)
+                    {
+                        List<string> data = controls[control];
+                        Folder_Control folder_control = new Folder_Control();
+                        // 顏色
+                        BrushConverter tagColor = new BrushConverter(); // 轉換顏色
+                        folder_control.colorTag.Background = (Brush)tagColor.ConvertFrom(data[0]);
+                        // aka
+                        folder_control.akaLabel.Text = data[1];
+                        // path
+                        folder_control.folderPath.Text = data[2];
+                        folder_control.akaLabel.ToolTip = data[2];
+                        GloableObject.mainWin.control_panel.Children.Add(folder_control);
+
+                    }
+                }    
+            }
+
             Window.GetWindow(this.Parent).Close();
         }
     }

@@ -68,5 +68,16 @@ namespace Picnel.io.Properties {
                 this["Favorite_Path_List"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Favorite_Controls_List {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Favorite_Controls_List"]));
+            }
+            set {
+                this["Favorite_Controls_List"] = value;
+            }
+        }
     }
 }

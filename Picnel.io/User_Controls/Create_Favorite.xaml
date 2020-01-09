@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <TextBlock Visibility="Collapsed"/>
         <TextBlock Text="Create Favorite" FontFamily="Consolas" Foreground="Gray" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="85,8,148,5" Height="14" Width="100"/>
-        <TextBox x:Name="Favorite_Name" Text="15215252" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Consolas" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
+        <TextBox x:Name="Favorite_Name" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Consolas" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\GloableObject.cs" />
+    <Compile Include="Classes\Settings_io.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="User_Controls\CreateControl_Dialog.xaml.cs">
       <DependentUpon>CreateControl_Dialog.xaml</DependentUpon>

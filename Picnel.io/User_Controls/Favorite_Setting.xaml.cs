@@ -66,7 +66,6 @@ namespace Picnel.io.User_Controls
             // 當前正使用Favorite
             if (Properties.Settings.Default.Current_Favorite != "None")
             {
-                // TODO:更新Favorite data Update Favorite Setting everythings
                 // 刪除原來路徑
                 string target_path = string.Empty;
                 foreach (string path in Properties.Settings.Default.Favorite_Path_List)
@@ -93,6 +92,47 @@ namespace Picnel.io.User_Controls
                 }
                 favorite_path_list.Add(path_jsonStr); // 加入新資料
 
+                //TODO 更新控件
+                // 刪除目前的
+                StringCollection favorite_controls_list = new StringCollection();
+                string target_controls = string.Empty;
+                foreach (string name in Properties.Settings.Default.Favorite_Controls_List)
+                {
+                    string[] ary = name.Split(':', '"');
+                    string key = ary[1].ToString();
+                    if (key == Properties.Settings.Default.Current_Favorite) { target_path = name; }
+                    favorite_controls_list.Add(name);
+                }
+                favorite_controls_list.Remove(target_path); // 刪除目標
+
+                Dictionary<string, Dictionary<string, List<string>>> favorite_controls = new Dictionary<string, Dictionary<string, List<string>>>();
+                Dictionary<string, List<string>> controls_list = new Dictionary<string, List<string>>();
+
+                int controls_counter = 0;
+                foreach (Folder_Control control in GloableObject.mainWin.control_panel.Children)
+                {
+                    string control_num = "control_" + controls_counter.ToString();
+                    List<string> control_data = new List<string>();
+
+                    //顏色
+                    string color = control.colorTag.Background.ToString();
+                    control_data.Add(color);
+                    //aka
+                    string aka = control.akaLabel.Text;
+                    control_data.Add(aka);
+                    //path
+                    string path = control.folderPath.Text;
+                    control_data.Add(path);
+
+                    controls_list.Add(control_num, control_data); //{"control_x":"[color, aka, path]"}
+
+                    controls_counter += 1;
+                }
+                favorite_controls.Add(Properties.Settings.Default.Current_Favorite, controls_list); //{"favor_name":{"control_x":"[color, aka, path]}}
+                string controls_jsonStr = JsonConvert.SerializeObject(favorite_controls, Formatting.Indented);
+                favorite_controls_list.Add(controls_jsonStr);
+
+                Properties.Settings.Default.Favorite_Controls_List = favorite_controls_list;
                 Properties.Settings.Default.Favorite_Path_List = favorite_path_list;
                 Window.GetWindow(this).Close();
                 GloableObject.logger($"✔🤍 [Save Favorite] - Success Save Favorite {Properties.Settings.Default.Current_Favorite}.", "HighLight");
@@ -112,8 +152,8 @@ namespace Picnel.io.User_Controls
                 WindowStyle = WindowStyle.None,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
+            Window.GetWindow(this).Close();
             newWin.ShowDialog();
-
             
         }
     }
