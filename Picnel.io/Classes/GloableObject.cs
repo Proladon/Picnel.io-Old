@@ -24,7 +24,7 @@ namespace Picnel.io.Classes
         public static String img_filename = string.Empty;
         public static String file_ex = string.Empty;
         public static String winState = "Normal";
-        public static String[] normal_img = { ".jpg", ".jpeg", ".png", ".bmp" };
+        public static String[] normal_img = { ".jpg", ".jpeg", ".png", ".bmp", ".tif", ".ico", ".apng" };
         public static String[] gif_img = { ".gif" };
         public static String[] video = { ".mp4", ".avi" };
         public static BitmapSource img = null;

@@ -25,15 +25,9 @@
 
     <Window.Resources>
         <!-- DefaultBtn -->
-        <Style  x:Key="DefaultBtn" TargetType="Button">
+        <Style  x:Key="DefaultBtn" TargetType="Button" BasedOn="{StaticResource normalBtn}">
             <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="Background" Value="{x:Null}"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="AliceBlue"/>
-                    <Setter Property="BorderBrush" Value="{x:Null}"/>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
         <!-- /DefaultBtn -->
 
@@ -181,14 +175,22 @@
             </Style.Triggers>
         </Style>
 
-        
+        <Style x:Key="popBtn" TargetType="Button" BasedOn="{StaticResource normalBtn}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Opacity" Value="0.7"/>
+        </Style>
 
     </Window.Resources>
 
 
     <!-- Base Layout -->
-    <Grid x:Name="baseGrid" Focusable="True">
-        <Grid x:Name="mainGrid" Background="{StaticResource dark}" Opacity="{Binding Value, ElementName=Opacity_slider}" Focusable="True">
+    <Grid x:Name="baseGrid">
+        <Grid x:Name="mainGrid" Background="{StaticResource dark}" Opacity="{Binding Value, ElementName=Opacity_slider}">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="main_row_1" Height="30*"/>
                 <RowDefinition x:Name="main_row_2" Height="481*"/>
@@ -240,16 +242,15 @@
                     <ToggleButton x:Name="copyBtn" Content="📑" ToolTip="Copy Tools" Style="{StaticResource toggle_Btn}" LostFocus="copyBtn_LostFocus"/>
                     <Popup x:Name="tool_pop" PlacementTarget="{Binding ElementName=copyBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=copyBtn}">
                         <StackPanel>
-                            <Button x:Name="copy_path" Content="📑 Full Path" Width="100" Height="50" Click="Button_Click_2" Focusable="False" Opacity="0.7"/>
-                            <Button x:Name="copy_img" Content="📑 Image" Width="100" Height="50" Focusable="False" Click="copy_img_Click" Opacity="0.7"/>
+                            <Button x:Name="copy_path" Content="📑 Full Path" Style="{StaticResource popBtn}" Click="Button_Click_2" />
+                            <Button x:Name="copy_img" Content="📑 Image" Style="{StaticResource popBtn}" Click="copy_img_Click" />
                         </StackPanel>
                     </Popup>
                     <Button Style="{StaticResource dangerBtn}" Content="☢" ToolTip="Danger Tool" Click="Button_Click_3"/>
                     <ToggleButton x:Name="infoBtn" Style="{StaticResource toggle_Btn}" Content="🌎" ToolTip="WebSite" LostFocus="infoBtn_LostFocus" />
                     <Popup x:Name="info_pop" PlacementTarget="{Binding ElementName=infoBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=infoBtn}">
                         <StackPanel>
-                            <Button  Content="📘 Documentation" Width="120" Height="50" Click="Documentation_Click" Focusable="False" Opacity="0.7"/>
-                            <Button  Content="✡ 巴哈姆特" Width="120" Height="50" Focusable="False" Click="gamer_Click" Opacity="0.7"/>
+                            <Button  Content="📘 Documentation" Style="{StaticResource popBtn}" Click="Documentation_Click"/>
                         </StackPanel>
                     </Popup>
                 </StackPanel>
@@ -283,7 +284,7 @@
                 </Grid >
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="2" Focusable="True">
+            <Grid Grid.Row="1" Grid.Column="2" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35*"/>
                     <RowDefinition Height="35*"/>
@@ -303,13 +304,13 @@
                 <TextBlock Name="targetFolder_path" ToolTip="" Text="None" Grid.Row="2"
                        FontSize="15" Foreground="White" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontWeight="Bold" />
                 <Button Style="{StaticResource ButtonRoundAccentRevealStyle}" Grid.Row="3" Content="Create Target" Click="CreateControl_Click" Margin="5" Foreground="#FF5FFDE0" FontFamily="Consolas" FontWeight="Bold" />
-                <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Hidden" Margin="5" Grid.RowSpan="2" Focusable="True">
+                <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Hidden" Margin="5" Grid.RowSpan="2">
                     <StackPanel Name="control_panel" Focusable="True" >
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
-            <ScrollViewer Focusable="True" x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
-                <StackPanel x:Name="logViewer" Focusable="True">
+            <ScrollViewer x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="logViewer">
                     <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.6 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                     <TextBlock x:Name="logger_label" Text="Logger: " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                 </StackPanel>
@@ -319,7 +320,7 @@
             <GridSplitter Height="2" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  Background="#FF5FFDE0"/>
         </Grid>
 
-        <Grid  Focusable="True" x:Name="img_grid">
+        <Grid x:Name="img_grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="{Binding ElementName=main_row_1, Path=Height}"/>
                 <RowDefinition Height="{Binding ElementName=main_row_2, Path=Height}"/>

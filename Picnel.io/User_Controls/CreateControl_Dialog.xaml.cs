@@ -50,7 +50,6 @@ namespace Picnel.io.User_Controls
         {
             //string color = Convert.ToString(choossColorBtn.SelectedColor); // 取得選取顏色
             string color = choossColorBtn.SelectedColorText;
-            GloableObject.logger(color);
             if (color == string.Empty)
             {
                 color = "#FFFFFF";

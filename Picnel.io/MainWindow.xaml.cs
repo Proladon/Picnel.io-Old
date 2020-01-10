@@ -113,7 +113,7 @@ namespace Picnel.io
                 try
                 {
                     System.IO.File.Move(GloableObject.img_path, GloableObject.curPath + '\\' + imgFileName.Text);
-                    GloableObject.logger($"[Renmae File] {GloableObject.img_filename} > {imgFileName.Text}");
+                    GloableObject.logger($"✔🔁 [Renmae File] {GloableObject.img_filename} > {imgFileName.Text}");
                     System.IO.File.Delete(GloableObject.img_filename);
                     GloableObject.img_path = GloableObject.curPath + '\\' + imgFileName.Text;
                     GloableObject.img_filename = imgFileName.Text;
@@ -252,6 +252,7 @@ namespace Picnel.io
             if (Properties.Settings.Default.Current_Favorite != "None")
             {
                 Favorite cur_favorite = new Favorite();
+                cur_favorite.Margin = new Thickness(10, 10, 10, 10);
                 cur_favorite.favorite_aka.Text = Properties.Settings.Default.Current_Favorite;
                 cur_favorite.favorite_path.Text = GloableObject.curPath;
                 cur_favorite.favorite_delete_btn.IsHitTestVisible = false;
@@ -375,12 +376,6 @@ namespace Picnel.io
                 Properties.Settings.Default.Favorite_Controls_List = null;
                 Properties.Settings.Default.Save();
             }
-        }
-
-
-        // 巴哈姆特
-        private void gamer_Click(object sender, RoutedEventArgs e)
-        {
         }
 
         // 說明文件 Documentation
