@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentWPF, Version=0.8.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentWPF.0.8.0\lib\net45\FluentWPF.dll</HintPath>
@@ -170,6 +173,15 @@
     <Resource Include="src\levels.png" />
     <Resource Include="src\on_top.png" />
     <Resource Include="src\pinterest_board_photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

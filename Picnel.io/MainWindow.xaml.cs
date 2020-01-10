@@ -289,12 +289,6 @@ namespace Picnel.io
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://picnel-io.gitbook.io/picnel-io/");
-
-        }
-
         // 複製工具
         private void copyBtn_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -383,13 +377,22 @@ namespace Picnel.io
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+
+        // 巴哈姆特
+        private void gamer_Click(object sender, RoutedEventArgs e)
         {
         }
 
-        private void tools_toggle_Checked(object sender, RoutedEventArgs e)
+        // 說明文件 Documentation
+        private void Documentation_Click(object sender, RoutedEventArgs e)
         {
+            System.Diagnostics.Process.Start("https://picnel-io.gitbook.io/picnel-io/");
+            infoBtn.IsChecked = false;
+        }
 
+        private void infoBtn_LostFocus(object sender, RoutedEventArgs e)
+        {
+            infoBtn.IsChecked = false;
         }
     }
 }

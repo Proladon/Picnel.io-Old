@@ -100,7 +100,7 @@ namespace Picnel.io.User_Controls
                     }
                 }    
             }
-
+            GloableObject.logger($"✔🔄 [Switch Favorite] - Switch to Favorite {this.favorite_aka.Text}", "HighLight");
             Window.GetWindow(this.Parent).Close();
         }
     }

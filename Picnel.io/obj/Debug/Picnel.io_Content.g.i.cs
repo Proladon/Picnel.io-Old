@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/file_not_support.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/levels.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/on_top.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/pinterest_board_photo.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icon.ico")]
 
 

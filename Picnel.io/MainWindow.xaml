@@ -25,7 +25,7 @@
 
     <Window.Resources>
         <!-- DefaultBtn -->
-        <Style  x:Key="DefaultBtn" TargetType="Button" >
+        <Style  x:Key="DefaultBtn" TargetType="Button">
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Background" Value="{x:Null}"/>
             <Style.Triggers>
@@ -36,22 +36,6 @@
             </Style.Triggers>
         </Style>
         <!-- /DefaultBtn -->
-
-        <!-- onTop -->
-        <Style  x:Key="ontop" TargetType="Button" >
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="Background" Value="AliceBlue"/>
-        </Style>
-        <!-- /onTop -->
-
-        <!-- Tool Btn -->
-        <Style  x:Key="toolsBtn" TargetType="Button" BasedOn="{StaticResource ButtonAccentRevealStyle}">
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Margin" Value="5,3"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="#252A33"/>
-        </Style>
-        <!-- /Tool Btn -->
 
         <!-- Slider -->
         <Style TargetType="{x:Type Thumb}" x:Key="SliderThumb_img">
@@ -122,6 +106,7 @@
         </Style>
         <!-- / Slider -->
 
+        <!-- TextBox -->
         <Style x:Key="roundTextBox" TargetType="TextBox">
             <Setter Property="Background" Value="Gray"/>
             <Setter Property="Template">
@@ -140,17 +125,63 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- /TextBox -->
 
         <!-- Toggle Button -->
-        <Style x:Key="toggle_Btn" TargetType="ToggleButton">
+        <Style x:Key="toggle_Btn" TargetType="ToggleButton" BasedOn="{StaticResource normal_toggleBtn}">
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="#80808080"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="5,3"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="#252A33"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="Background" Value="{StaticResource blue_green}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource blue_green}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="topmostBtn" TargetType="ToggleButton" BasedOn="{StaticResource normal_toggleBtn}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="Background" Value="{StaticResource blue_green}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource blue_green}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <!-- / Toggle Button -->
+  
+        <Style x:Key="favor" TargetType="Button" BasedOn="{StaticResource normalBtn}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5,3"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource blue_green}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dangerBtn" TargetType="Button" BasedOn="{StaticResource normalBtn}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5,3"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFA200"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        
 
     </Window.Resources>
 
@@ -171,27 +202,27 @@
 
             <Grid Grid.Row="0" Grid.ColumnSpan="3" Focusable="True">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="28*"/>
+                    <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="873*"/>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="40*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="icon" Grid.Column="0" Source="src\levels.png" Margin="5,1,1,1"/>
+                <Image x:Name="icon" Grid.Column="0" Source="src\icon.ico" Margin="10,3,1,3"/>
                 <TextBlock x:Name="Title" Text="Picnel.io - Path Control Image Classifier I/O" Grid.Column="1" Foreground="#FFB8B8B8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,6,0,5" FontSize="15" FontFamily="Consolas" FontWeight="Bold" />
                 <ToggleButton x:Name="topmose_Btn" Grid.Column="2"
-                              Padding="0,3,0,0"
+                              Style="{StaticResource topmostBtn}"
                               Checked="topmose_Btn_Checked" Unchecked="topmose_Btn_Unchecked"
                               BorderThickness="0"
-                              Background="{x:Null}">
-                    <Image Source="src\on_top.png" />
+                              >
+                    <Image Source="src\on_top.png" IsHitTestVisible="False" Margin="0,5" />
                 </ToggleButton>
                 <Button Grid.Column="3" Style="{StaticResource DefaultBtn}" Click="winMinimized" Padding="0">
-                    <TextBlock Text="⚪" Foreground="#FFFFC500" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
+                    <TextBlock  Text="⚪" Foreground="#FFFFC500" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
                 </Button>
                 <Button Grid.Column="4" Style="{StaticResource DefaultBtn}" Click="winMaximized" Padding="0">
-                    <TextBlock Text="⚪" Foreground="#FF00D1FF" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
+                    <TextBlock  Text="⚪" Foreground="#FF00D1FF" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
                 </Button>
                 <Button Grid.Column="5" Click="Button_Click_1" Style="{StaticResource DefaultBtn}" Padding="0">
                     <TextBlock Text="⚪" Foreground="#FFFD3068" HorizontalAlignment="Center" VerticalAlignment="Center"  Padding="0" Grid.IsSharedSizeScope="True"/>
@@ -204,7 +235,7 @@
                     <RowDefinition Height="29*"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <Button Style="{StaticResource toolsBtn}" Content="🤍" ToolTip="Favorite" Click="favorit_Btn_Click"/>
+                    <Button Style="{StaticResource favor}" Content="🤍" ToolTip="Favorite" Click="favorit_Btn_Click"/>
                     <ToggleButton Content="🌙" ToolTip="Dark Mode" Style="{ StaticResource toggle_Btn}" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"/>
                     <ToggleButton x:Name="copyBtn" Content="📑" ToolTip="Copy Tools" Style="{StaticResource toggle_Btn}" LostFocus="copyBtn_LostFocus"/>
                     <Popup x:Name="tool_pop" PlacementTarget="{Binding ElementName=copyBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=copyBtn}">
@@ -213,9 +244,14 @@
                             <Button x:Name="copy_img" Content="📑 Image" Width="100" Height="50" Focusable="False" Click="copy_img_Click" Opacity="0.7"/>
                         </StackPanel>
                     </Popup>
-                    <Button Style="{StaticResource toolsBtn}" Content="☢" ToolTip="Danger Tool" Click="Button_Click_3"/>
-                    <Button Style="{StaticResource toolsBtn}" Content="🌎" ToolTip="WebSite" Click="Button_Click"/>
-                    
+                    <Button Style="{StaticResource dangerBtn}" Content="☢" ToolTip="Danger Tool" Click="Button_Click_3"/>
+                    <ToggleButton x:Name="infoBtn" Style="{StaticResource toggle_Btn}" Content="🌎" ToolTip="WebSite" LostFocus="infoBtn_LostFocus" />
+                    <Popup x:Name="info_pop" PlacementTarget="{Binding ElementName=infoBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=infoBtn}">
+                        <StackPanel>
+                            <Button  Content="📘 Documentation" Width="120" Height="50" Click="Documentation_Click" Focusable="False" Opacity="0.7"/>
+                            <Button  Content="✡ 巴哈姆特" Width="120" Height="50" Focusable="False" Click="gamer_Click" Opacity="0.7"/>
+                        </StackPanel>
+                    </Popup>
                 </StackPanel>
                 <Button x:Name="settings_Btn" Grid.Row="1" Content="⚙" FontSize="25" Style="{StaticResource ButtonAccentRevealStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF838383" Click="settings_Btn_Click"/>
             </Grid>
@@ -274,7 +310,7 @@
             </Grid>
             <ScrollViewer Focusable="True" x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="logViewer" Focusable="True">
-                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.5 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
+                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.6 ALPHA / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                     <TextBlock x:Name="logger_label" Text="Logger: " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                 </StackPanel>
             </ScrollViewer>

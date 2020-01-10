@@ -103,7 +103,6 @@ namespace Picnel.io.User_Controls
                         favorite_list.Add(favorite);
                     }
                     favorite_list.Add(Favorite_Name.Text); // 加入新資料
-                    GloableObject.logger(favorite_list.ToString());
 
                     // 存路徑
                     Dictionary<string, string> favorite_path = new Dictionary<string, string>();
