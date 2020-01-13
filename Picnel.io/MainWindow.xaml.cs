@@ -69,6 +69,7 @@ namespace Picnel.io
         {
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
             folderDialog.SelectedPath = GloableObject.lastPath;
             WinForms.DialogResult result = folderDialog.ShowDialog();
             if (result == WinForms.DialogResult.Cancel)

@@ -39,7 +39,7 @@ namespace Picnel.io.User_Controls
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
             folderDialog.ShowNewFolderButton = true;
-            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
             folderDialog.SelectedPath = GloableObject.lastPath;
             folderDialog.ShowDialog();
             String sPath = folderDialog.SelectedPath;
