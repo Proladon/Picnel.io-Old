@@ -69,7 +69,7 @@ namespace Picnel.io
         {
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
-            folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            folderDialog.SelectedPath = GloableObject.lastPath;
             WinForms.DialogResult result = folderDialog.ShowDialog();
             if (result == WinForms.DialogResult.Cancel)
             {
@@ -79,7 +79,7 @@ namespace Picnel.io
             GloableObject.curPath = sPath;
             targetFolder_path.Text = sPath;
             targetFolder_path.ToolTip = sPath;
-
+            GloableObject.lastPath = sPath;
             GloableObject.random_image(sPath);
             GloableObject.logger($"✔⚙ [Set Main Directory] - Path: [ {sPath} ]");
         }

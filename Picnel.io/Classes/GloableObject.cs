@@ -19,6 +19,7 @@ namespace Picnel.io.Classes
         //public static Boolean topmost = false;
 
         public static String curPath = string.Empty;
+        public static String lastPath = string.Empty;
         public static String img_path = string.Empty;
         public static String preFileName = string.Empty;
         public static String img_filename = string.Empty;

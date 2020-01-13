@@ -40,24 +40,36 @@ namespace Picnel.io.User_Controls
             folderDialog.ShowNewFolderButton = false;
             folderDialog.ShowNewFolderButton = true;
             folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            folderDialog.SelectedPath = GloableObject.lastPath;
             folderDialog.ShowDialog();
             String sPath = folderDialog.SelectedPath;
             choseFolder_path.Text = sPath;
+            GloableObject.lastPath = sPath;
         }
 
         // 確認創建 
         private void createBtn_Click(object sender, RoutedEventArgs e)
         {
-            //string color = Convert.ToString(choossColorBtn.SelectedColor); // 取得選取顏色
             string color = choossColorBtn.SelectedColorText;
             if (color == string.Empty)
             {
                 color = "#FFFFFF";
             }
+
             Folder_Control folder_control = new Folder_Control(); // 創建 Folder_Control 實例
             BrushConverter tagColor = new BrushConverter(); // 轉換顏色
+            
             folder_control.colorTag.Background = (Brush)tagColor.ConvertFrom(color); // 設定Lable控件 colorTag 的顏色
-            folder_control.akaLabel.Text = folderAKA_label.Text;
+            
+            if (folderAKA_label.Text == string.Empty || folderAKA_label.Text == "A.K.A")
+            {
+                string dirName = new DirectoryInfo(@choseFolder_path.Text).Name;
+                folder_control.akaLabel.Text = dirName;
+            }
+            else
+            {
+                folder_control.akaLabel.Text = folderAKA_label.Text;    
+            }
             folder_control.folderPath.Text = choseFolder_path.Text;
             folder_control.ToolTip = choseFolder_path.Text;
             folder_control.akaLabel.FontFamily = new FontFamily("Consolas Bold");
