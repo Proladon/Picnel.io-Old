@@ -211,7 +211,7 @@
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="40*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="icon" Grid.Column="0" Source="src\icon.ico" Margin="10,3,1,3"/>
+                <Image x:Name="icon" Grid.Column="0" Source="src\icon.ico" Margin="10,5,2,5"/>
                 <TextBlock x:Name="Title" Text="Picnel.io - Path Control Image Classifier I/O" Grid.Column="1" Foreground="#FFB8B8B8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,6,0,5" FontSize="15" FontFamily="Consolas" FontWeight="Bold" />
                 <ToggleButton x:Name="topmose_Btn" Grid.Column="2"
                               Style="{StaticResource topmostBtn}"
@@ -280,7 +280,7 @@
                             Style="{StaticResource ButtonAccentRevealStyle}" 
                             Background="#FF55ECF3" Foreground="#FF2E2E2E" BorderBrush="{x:Null}"
                             Click="openImg_Btn_Click" FontSize="20"   Margin="0,0,0,5"/>
-                    <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="64"/>
+                    <Button x:Name="deleteImg_Btn" Content="🗑"  Style="{StaticResource ButtonAccentRevealStyle}" Grid.Column="2" Background="#FFF35580" Click="deleteImg_Btn_Click" FontSize="20" Foreground="#FF2E2E2E" BorderBrush="{x:Null}" Margin="0,0,0,5" />
                 </Grid >
             </Grid>
 
@@ -332,7 +332,7 @@
                 <ColumnDefinition Width="{Binding ElementName=main_column_3, Path=Width}" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid Grid.Row="1" Grid.Column="1" AllowDrop="True" DragDrop.Drop="Grid_Drop">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{Binding ElementName=img_row_1, Path=Height}"/>
                     <RowDefinition Height="{Binding ElementName=img_row_2, Path=Height}"/>

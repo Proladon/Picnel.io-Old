@@ -82,7 +82,7 @@ namespace Picnel.io
             targetFolder_path.ToolTip = sPath;
             GloableObject.lastPath = sPath;
             GloableObject.random_image(sPath);
-            GloableObject.logger($"✔⚙ [Set Main Directory] - Path: [ {sPath} ]");
+            GloableObject.logger($"✔⚙ [Set Main Directory] - Path: [ {sPath} ]", "HighLight");
         }
 
         // 新建目標資料夾 Create Target Control
@@ -397,11 +397,55 @@ namespace Picnel.io
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                // Note that you can have more than one file.
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                foreach (string i in files)
+                foreach (string file_path in files)
                 {
-                    Console.WriteLine(i);
+                    string filename = System.IO.Path.GetFileName(file_path);
+                    // TODO 判斷是否為資料夾
+                    if (System.IO.Path.GetExtension(filename) == string.Empty)
+                    {
+                        // TODO 生成Controls
+                        Folder_Control folder_Control = new Folder_Control();
+                        folder_Control.akaLabel.Text = filename;
+                        folder_Control.folderPath.Text = file_path;
+                        folder_Control.ToolTip = file_path;
+                        folder_Control.Height = 25;
+                        control_panel.Children.Add(folder_Control);
+                    }
+                }
+            }
+        }
+
+        // 資料夾拖曳進 Image Viewer / Main Folder
+        private void Grid_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length == 1)
+                {
+                    string file = files[0];
+                    string filename = System.IO.Path.GetFileName(file);
+                    string file_ex = System.IO.Path.GetExtension(filename);
+                    if (file_ex != string.Empty)
+                    {
+                        GloableObject.change_src(file);
+                        GloableObject.logger($"✔🔽 [Load File] - Loaded:[{filename}] Path:[{file}]");
+                    }
+                    else
+                    {
+                        GloableObject.curPath = file;
+                        GloableObject.random_image(file + '\\');
+                        targetFolder_path.Text = file;
+                        GloableObject.logger($"✔🔽 [Load Folder] - Loaded:[{filename}] Path:[{file}]");
+                        GloableObject.logger($"✔⚙ [Set Main Directory] - Path: [ {file} ]", "HighLight");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Only Can Drop One File / Folder.");
+                    return;
                 }
             }
         }
