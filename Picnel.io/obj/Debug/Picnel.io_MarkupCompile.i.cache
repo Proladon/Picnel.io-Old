@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 H:\Coding\GitKraken\Picnel.io\Picnel.io\App.xaml
-7-47927984
+10457987564
 
-15-1982754735
+18-99589620
 229476641
-MainWindow.xaml;User_Controls\CreateControl_Dialog.xaml;User_Controls\Create_Favorite.xaml;User_Controls\Favorite.xaml;User_Controls\Favorite_Setting.xaml;User_Controls\Folder_Control.xaml;User_Controls\User_Settings.xaml;
+MainWindow.xaml;Settings_Pages\GIF_Viewer_Settings.xaml;Settings_Pages\Logger_Settings.xaml;User_Controls\CreateControl_Dialog.xaml;User_Controls\Create_Favorite.xaml;User_Controls\Favorite.xaml;User_Controls\Favorite_Setting.xaml;User_Controls\Folder_Control.xaml;User_Controls\Folder_Control_Edit.xaml;User_Controls\User_Settings.xaml;
 
-False
+True
 

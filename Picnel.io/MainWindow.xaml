@@ -304,8 +304,8 @@
                 <TextBlock Name="targetFolder_path" ToolTip="" Text="None" Grid.Row="2"
                        FontSize="15" Foreground="White" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontWeight="Bold" />
                 <Button Style="{StaticResource ButtonRoundAccentRevealStyle}" Grid.Row="3" Content="Create Target" Click="CreateControl_Click" Margin="5" Foreground="#FF5FFDE0" FontFamily="Consolas" FontWeight="Bold" />
-                <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Hidden" Margin="5" Grid.RowSpan="2">
-                    <StackPanel Name="control_panel" Focusable="True" >
+                <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Hidden" Margin="5" Grid.RowSpan="2" AllowDrop="True" DragDrop.Drop="ScrollViewer_Drop">
+                    <StackPanel Name="control_panel" Focusable="True">
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

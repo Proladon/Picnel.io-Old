@@ -36,6 +36,7 @@ namespace Picnel.io.User_Controls
         // 選擇資料夾 Choose Target Folder
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
             folderDialog.ShowNewFolderButton = true;
@@ -63,16 +64,25 @@ namespace Picnel.io.User_Controls
             
             if (folderAKA_label.Text == string.Empty || folderAKA_label.Text == "A.K.A")
             {
-                string dirName = new DirectoryInfo(@choseFolder_path.Text).Name;
-                folder_control.akaLabel.Text = dirName;
+                Console.WriteLine("00");
+                if (choseFolder_path.Text != string.Empty)
+                {
+                    string dirName = new DirectoryInfo(@choseFolder_path.Text).Name;
+                    folder_control.akaLabel.Text = dirName;
+                    folder_control.akaLabel.Foreground = Brushes.Gray;
+                    Console.WriteLine("0");
+                }
+                
             }
             else
             {
+                Console.WriteLine("1");
                 folder_control.akaLabel.Text = folderAKA_label.Text;    
             }
             folder_control.folderPath.Text = choseFolder_path.Text;
             folder_control.ToolTip = choseFolder_path.Text;
             folder_control.akaLabel.FontFamily = new FontFamily("Consolas Bold");
+            folder_control.Height = 25;
             //將Folder_Control 實例 添加到 MainWindow 的 control_panel 中
             GloableObject.mainWin.control_panel.Children.Add(folder_control);
             GloableObject.logger($"✔🕹[Create Target Folder Control] AKA :[{folderAKA_label.Text}] ; Path: [{choseFolder_path.Text}]");

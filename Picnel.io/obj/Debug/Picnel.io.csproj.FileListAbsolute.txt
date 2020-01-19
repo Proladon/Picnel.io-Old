@@ -90,3 +90,9 @@ H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\Picnel.io.exe.manifest
 H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\Picnel.io.application
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Picnel.io.exe.manifest
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Picnel.io.application
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Settings_Pages\GIF_Viewer_Settings.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Settings_Pages\GIF_Viewer_Settings.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Settings_Pages\Logger_Settings.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Settings_Pages\Logger_Settings.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Folder_Control_Edit.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Folder_Control_Edit.baml

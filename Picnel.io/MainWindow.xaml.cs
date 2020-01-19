@@ -390,5 +390,20 @@ namespace Picnel.io
         {
             infoBtn.IsChecked = false;
         }
+
+
+        // 資料夾拖曳進Target Folder
+        private void ScrollViewer_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string i in files)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
     }
 }

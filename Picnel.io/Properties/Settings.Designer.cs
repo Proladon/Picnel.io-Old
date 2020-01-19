@@ -79,5 +79,17 @@ namespace Picnel.io.Properties {
                 this["Favorite_Controls_List"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int Logger_FontSize {
+            get {
+                return ((int)(this["Logger_FontSize"]));
+            }
+            set {
+                this["Logger_FontSize"] = value;
+            }
+        }
     }
 }

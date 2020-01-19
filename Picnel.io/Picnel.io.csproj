@@ -117,6 +117,12 @@
     <Compile Include="Classes\GloableObject.cs" />
     <Compile Include="Classes\Settings_io.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Settings_Pages\GIF_Viewer_Settings.xaml.cs">
+      <DependentUpon>GIF_Viewer_Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings_Pages\Logger_Settings.xaml.cs">
+      <DependentUpon>Logger_Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\CreateControl_Dialog.xaml.cs">
       <DependentUpon>CreateControl_Dialog.xaml</DependentUpon>
     </Compile>
@@ -131,6 +137,9 @@
     </Compile>
     <Compile Include="User_Controls\Folder_Control.xaml.cs">
       <DependentUpon>Folder_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Folder_Control_Edit.xaml.cs">
+      <DependentUpon>Folder_Control_Edit.xaml</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\User_Settings.xaml.cs">
       <DependentUpon>User_Settings.xaml</DependentUpon>
@@ -147,6 +156,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Settings_Pages\GIF_Viewer_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings_Pages\Logger_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="User_Controls\CreateControl_Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User_Controls\Folder_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Controls\Folder_Control_Edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

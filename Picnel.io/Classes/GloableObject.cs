@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Picnel.io;
+using Picnel.io.User_Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,7 @@ namespace Picnel.io.Classes
         //public static Boolean topmost = false;
 
         public static String curPath = string.Empty;
-        public static String lastPath = string.Empty;
+        public static String lastPath = string.Empty; //紀錄上次選取的資料夾位置 (FolderDiolog)
         public static String img_path = string.Empty;
         public static String preFileName = string.Empty;
         public static String img_filename = string.Empty;
@@ -29,6 +30,7 @@ namespace Picnel.io.Classes
         public static String[] gif_img = { ".gif" };
         public static String[] video = { ".mp4", ".avi" };
         public static BitmapSource img = null;
+        public static Folder_Control temp_control = null;
 
         public static MainWindow mainWin = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
@@ -39,7 +41,7 @@ namespace Picnel.io.Classes
             log.TextWrapping = System.Windows.TextWrapping.Wrap;
             log.Margin = new System.Windows.Thickness(3, 3, 3, 3);
             log.FontFamily = new FontFamily("Consolas Bold");
-            log.FontSize = 15;
+            log.FontSize = Properties.Settings.Default.Logger_FontSize;
             if (type == "Normal")
             {
                 log.Foreground = new SolidColorBrush(Colors.Gray);

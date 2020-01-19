@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Picnel.io.exe" size="598488">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Picnel.io.exe" size="609752">
       <assemblyIdentity name="Picnel.io" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0/gHTXAAG2t/wPOJ04gIXcLZ4zPGE586ndKyngvjlOI=</dsig:DigestValue>
+        <dsig:DigestValue>kBo8e4fdwb29WFXXQNIYV/Fln9HRkK7be1ESSFKFdYQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -159,13 +159,13 @@
       <dsig:DigestValue>6EmM75tkRXhiwTcFStYWQvSFrhYahu6/xnQAr+j/SBo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Picnel.io.exe.config" size="1042">
+  <file name="Picnel.io.exe.config" size="1168">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>c4YXCxlpVyqzUUZm+y/Qwf0xHgc7j8ZxRbyefbWpInI=</dsig:DigestValue>
+      <dsig:DigestValue>uAw7EoWFtrBvgfI/KJjAbuegMWPlbRnh8C1FCwQs95w=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

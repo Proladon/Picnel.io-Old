@@ -9,19 +9,6 @@
              d:DesignHeight="200" d:DesignWidth="450"
              MouseDown="UserControl_MouseDown"
              >
-    <UserControl.Resources>
-        <Style x:Key="colorPicker" TargetType="xctk:ColorPicker">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Button x:Name="pickerBtn" Visibility="Hidden"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
-    </UserControl.Resources>
 
     <Grid x:Name="mainGrid" Background="#252A33" Focusable="True">
         <Grid.RowDefinitions>

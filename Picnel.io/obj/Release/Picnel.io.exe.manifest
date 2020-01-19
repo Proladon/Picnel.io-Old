@@ -74,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8ibUCa5gZN5Jcrbji3KipQfhE1cex5OErueX03dZMDE=</dsig:DigestValue>
+        <dsig:DigestValue>Oe1wWbBezMOBMU8roqdkzzXTqnRcoehMAQr/qE4Wpc0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -159,13 +159,13 @@
       <dsig:DigestValue>6EmM75tkRXhiwTcFStYWQvSFrhYahu6/xnQAr+j/SBo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Picnel.io.exe.config" size="1042">
+  <file name="Picnel.io.exe.config" size="1168">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>c4YXCxlpVyqzUUZm+y/Qwf0xHgc7j8ZxRbyefbWpInI=</dsig:DigestValue>
+      <dsig:DigestValue>uAw7EoWFtrBvgfI/KJjAbuegMWPlbRnh8C1FCwQs95w=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

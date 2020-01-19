@@ -7,27 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="300" Margin="0,1">
     <UserControl.Resources>
-        <Style x:Key="controldelete" TargetType="Button" BasedOn="{StaticResource ButtonAccentRevealStyle}">
+        <Style x:Key="control_delete" TargetType="Button" BasedOn="{StaticResource normalBtn}">
             <Setter Property="Background" Value="#FFF35580"/>
         </Style>
+
+        <Style x:Key="control_edit" TargetType="Button" BasedOn="{StaticResource normalBtn}">
+            <Setter Property="Background" Value="Gray"/>
+        </Style>
+
+        <Style x:Key="color_tag" TargetType="Button" BasedOn="{StaticResource normalBtn}">
+            <Setter x:Name="bg" Property="Background" Value="Gray"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{Binding Value, ElementName=bg}"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
     </UserControl.Resources>
     <Grid Background="White">
 
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="92*"/>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="52*"/>
+            <ColumnDefinition Width="52*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
 
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="folderPath" Visibility="Collapsed"/>
-        <TextBlock x:Name="colorTag" Grid.Column="0" Background="Gray"/>
-        <TextBlock x:Name="akaLabel" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-        <Button Style="{StaticResource ButtonAccentRevealStyle}" x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2" Click="moveTo_Btn_Click"/>
-        <Button Style="{StaticResource ButtonAccentRevealStyle}" x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3" Click="copyTo_Btn_Click"/>
-        <Button Style="{StaticResource controldelete}" x:Name="delete_Btn" Content="❌" Grid.Column="4" Click="delete_Btn_Click" />
+        <Button x:Name="colorTag" Style="{StaticResource color_tag}" ToolTip="Open Folder" Grid.Column="0" Background="Gray" Click="colorTag_Click" Cursor="Hand"/>
+        <TextBlock x:Name="akaLabel" Grid.Column="1" Text="NoName" VerticalAlignment="Center"  HorizontalAlignment="Left" Foreground="Black" Margin="5,0,0,0"/>
+        <Button Style="{StaticResource normalBtn}" x:Name="moveTo_Btn" Content="M" ToolTip="Move To This Folder" Grid.Column="2" Click="moveTo_Btn_Click"/>
+        <Button Style="{StaticResource normalBtn}" x:Name="copyTo_Btn" Content="C" ToolTip="Copy To This Folder" Grid.Column="3" Click="copyTo_Btn_Click"/>
+        <Button Style="{StaticResource control_edit}" x:Name="edit_btn" Content="🔧" ToolTip="Edit Control" Grid.Column="4" Click="edit_btn_Click"/>
+        <Button Style="{StaticResource control_delete}" x:Name="delete_Btn" Content="❌" Grid.Column="5" Click="delete_Btn_Click" />
 
     </Grid>
 </UserControl>

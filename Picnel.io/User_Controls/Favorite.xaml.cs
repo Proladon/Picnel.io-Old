@@ -95,6 +95,7 @@ namespace Picnel.io.User_Controls
                         // path
                         folder_control.folderPath.Text = data[2];
                         folder_control.akaLabel.ToolTip = data[2];
+                        folder_control.Height = 25;
                         GloableObject.mainWin.control_panel.Children.Add(folder_control);
 
                     }
