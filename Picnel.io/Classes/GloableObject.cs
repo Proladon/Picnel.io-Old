@@ -144,8 +144,8 @@ namespace Picnel.io.Classes
             try
             {
                 System.IO.File.Move(file, path + '\\' + GloableObject.img_filename);
-                random_image(curPath);
                 logger($"✔📤 [Move File] - [ {img_filename} ] move to [ {path + '\\'} ]");
+                random_image(curPath);
 
             }
             catch (System.IO.IOException)

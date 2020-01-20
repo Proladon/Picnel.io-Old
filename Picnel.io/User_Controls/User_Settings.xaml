@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="150*"/>
                 <ColumnDefinition Width="450*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Apply" Grid.Column="0" Style="{StaticResource ButtonAccentRevealStyle}" Foreground="White" FontFamily="Consolas" FontSize="15" Margin="5,5"/>
+            <Button Content="Apply" Grid.Column="0" Style="{StaticResource ButtonAccentRevealStyle}" Foreground="White" FontFamily="Consolas" FontSize="15" Margin="5,5" Click="Apply_Button_Click"/>
             <Button Content="Cancel" Grid.Column="1" Style="{StaticResource ButtonAccentRevealStyle}" Foreground="White" FontFamily="Consolas" FontSize="15" Margin="5,5" Click="Button_Click"/>
         </Grid>
         <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>

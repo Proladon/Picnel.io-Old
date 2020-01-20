@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Picnel.io.Settings_Pages"
+             xmlns:local="clr-namespace:Picnel.io.Properties"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="450">
+             d:DesignHeight="450" d:DesignWidth="450"
+             >
+    
     <UserControl.Resources>
         <Style x:Key="setting_label" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
@@ -17,6 +19,7 @@
             <Setter Property="Margin" Value="15,5"/>
         </Style>
     </UserControl.Resources>
+
     <Grid>
         <StackPanel>
             <TextBlock Text="FontSize" Style="{StaticResource setting_label}"/>

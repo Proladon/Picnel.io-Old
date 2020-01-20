@@ -185,6 +185,8 @@ namespace Picnel.io
         // 使用者設定按鈕 Settings Button
         private void settings_Btn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Sorry, This Function Not Yet Complete.");
+            /*
             User_Settings user_settings = new User_Settings();
             Window newWin = new Window
             {
@@ -197,6 +199,7 @@ namespace Picnel.io
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             newWin.ShowDialog();
+            */
         }
 
         // 開啟檔案位置按鈕 Open File Location
@@ -391,6 +394,13 @@ namespace Picnel.io
             infoBtn.IsChecked = false;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowser web = new WebBrowser();
+            System.Diagnostics.Process.Start("https://picnel-io.gitbook.io/picnel-io/changelog-geng-xin-ri-zhi");
+            infoBtn.IsChecked = false;
+        }
+
 
         // 資料夾拖曳進Target Folder
         private void ScrollViewer_Drop(object sender, DragEventArgs e)
@@ -401,16 +411,17 @@ namespace Picnel.io
                 foreach (string file_path in files)
                 {
                     string filename = System.IO.Path.GetFileName(file_path);
-                    // TODO 判斷是否為資料夾
+                    // 判斷是否為資料夾
                     if (System.IO.Path.GetExtension(filename) == string.Empty)
                     {
-                        // TODO 生成Controls
+                        // 生成Controls
                         Folder_Control folder_Control = new Folder_Control();
                         folder_Control.akaLabel.Text = filename;
                         folder_Control.folderPath.Text = file_path;
                         folder_Control.ToolTip = file_path;
                         folder_Control.Height = 25;
                         control_panel.Children.Add(folder_Control);
+                        GloableObject.logger($"✔🕹[Create Target Folder Control] AKA :[{filename}] ; Path: [{file_path}]");
                     }
                 }
             }
@@ -449,5 +460,7 @@ namespace Picnel.io
                 }
             }
         }
+
+
     }
 }

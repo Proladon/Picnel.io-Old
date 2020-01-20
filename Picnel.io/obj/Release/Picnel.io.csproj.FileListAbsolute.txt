@@ -50,3 +50,9 @@ H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Picnel.io.application
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Picnel.io.csproj.CopyComplete
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Picnel.io.exe
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Picnel.io.pdb
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Settings_Pages\GIF_Viewer_Settings.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Settings_Pages\Logger_Settings.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\User_Controls\Folder_Control_Edit.g.cs
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Settings_Pages\GIF_Viewer_Settings.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\Settings_Pages\Logger_Settings.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Release\User_Controls\Folder_Control_Edit.baml

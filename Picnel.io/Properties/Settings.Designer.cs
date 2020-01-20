@@ -91,5 +91,17 @@ namespace Picnel.io.Properties {
                 this["Logger_FontSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#252A33")]
+        public string Theme_Color {
+            get {
+                return ((string)(this["Theme_Color"]));
+            }
+            set {
+                this["Theme_Color"] = value;
+            }
+        }
     }
 }

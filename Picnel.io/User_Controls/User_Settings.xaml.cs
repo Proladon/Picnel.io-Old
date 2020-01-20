@@ -1,4 +1,5 @@
-﻿using Picnel.io.Settings_Pages;
+﻿using Picnel.io.Properties;
+using Picnel.io.Settings_Pages;
 using Picnel.io.User_Controls;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,10 @@ namespace Picnel.io.User_Controls
         
         // Image_Viewer
         private void image_viewer_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void Apply_Button_Click(object sender, RoutedEventArgs e)
         {
         }
     }

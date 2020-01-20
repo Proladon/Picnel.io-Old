@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Picnel.io"
+        xmlns:properties="clr-namespace:Picnel.io.Properties"
         xmlns:us="clr-namespace:Picnel.io.User_Controls"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
@@ -190,7 +191,9 @@
 
     <!-- Base Layout -->
     <Grid x:Name="baseGrid">
-        <Grid x:Name="mainGrid" Background="{StaticResource dark}" Opacity="{Binding Value, ElementName=Opacity_slider}">
+        <Grid x:Name="mainGrid"
+              Background="{StaticResource dark}"
+              Opacity="{Binding Value, ElementName=Opacity_slider}">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="main_row_1" Height="30*"/>
                 <RowDefinition x:Name="main_row_2" Height="481*"/>
@@ -251,6 +254,7 @@
                     <Popup x:Name="info_pop" PlacementTarget="{Binding ElementName=infoBtn}" Placement="Left" IsOpen="{Binding IsChecked, ElementName=infoBtn}">
                         <StackPanel>
                             <Button  Content="📘 Documentation" Style="{StaticResource popBtn}" Click="Documentation_Click"/>
+                            <Button  Content="⏫ ChangeLog" Style="{StaticResource popBtn}" Click="Button_Click"/>
                         </StackPanel>
                     </Popup>
                 </StackPanel>
@@ -311,7 +315,7 @@
             </Grid>
             <ScrollViewer x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="logViewer">
-                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.6 Beta / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
+                    <TextBlock x:Name="version_label" Text="🔰 [Version] - 1.0.7 / Create by Proladon / PowerBy .Net 4.7.2 WPF" Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                     <TextBlock x:Name="logger_label" Text="Logger: " Foreground="White" Margin="3,3" FontFamily="Consolas" FontWeight="Bold" FontSize="15"/>
                 </StackPanel>
             </ScrollViewer>
