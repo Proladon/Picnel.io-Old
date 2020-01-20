@@ -385,7 +385,7 @@ namespace Picnel.io
         // 說明文件 Documentation
         private void Documentation_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://picnel-io.gitbook.io/picnel-io/");
+            System.Diagnostics.Process.Start("https://app.gitbook.com/@proladon/s/picnel-io/document-shui-ming-wen-jian");
             infoBtn.IsChecked = false;
         }
 
