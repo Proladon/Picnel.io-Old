@@ -8,7 +8,7 @@ In the traditional way, might open up a lot of file expolorer and find out the t
 Allow you pinned target folder to the UI and with commonly used option like `Copy`、`Move (cut & past)` by create a control item. then u can just simply click the option to deal with your file.
 
 ### See more detail in Documentation
-## [Documentation](https://picnel-io.gitbook.io/picnel-io/)
+## [Documentation](https://proladon.gitbook.io/picnel-io/)
 
 ### Preview
 #### Darkmode / Brightmode
