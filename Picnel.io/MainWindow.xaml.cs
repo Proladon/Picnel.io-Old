@@ -40,6 +40,8 @@ namespace Picnel.io
             try
             {
                 mainGrid.Focus();
+                infoBtn.IsChecked = false;
+                copyBtn.IsChecked = false;
                 this.DragMove();
             }
             catch (System.InvalidOperationException)
@@ -348,6 +350,8 @@ namespace Picnel.io
         }
         private void Window_Deactivated(object sender, EventArgs e)
         {
+            copyBtn.IsChecked = false;
+            infoBtn.IsChecked = false;
             this.Opacity = 0.8;
         }
 
@@ -355,14 +359,6 @@ namespace Picnel.io
         {
             this.Opacity = 1;
         }
-
-        // 關閉程式
-        private void appWindow_Closed(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.Current_Favorite = "None";
-            Properties.Settings.Default.Save();
-        }
-
 
         // Settings Data Debug
         // 清除所有設定
@@ -386,7 +382,6 @@ namespace Picnel.io
         private void Documentation_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://app.gitbook.com/@proladon/s/picnel-io/document-shui-ming-wen-jian");
-            infoBtn.IsChecked = false;
         }
 
         private void infoBtn_LostFocus(object sender, RoutedEventArgs e)
@@ -397,8 +392,7 @@ namespace Picnel.io
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             WebBrowser web = new WebBrowser();
-            System.Diagnostics.Process.Start("https://picnel-io.gitbook.io/picnel-io/changelog-geng-xin-ri-zhi");
-            infoBtn.IsChecked = false;
+            System.Diagnostics.Process.Start("https://app.gitbook.com/@proladon/s/picnel-io/changelog-geng-xin-ri-zhi");
         }
 
 
@@ -459,6 +453,13 @@ namespace Picnel.io
                     return;
                 }
             }
+        }
+
+        // 關閉程式
+        private void appWindow_Closed(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Current_Favorite = "None";
+            Properties.Settings.Default.Save();
         }
 
 
