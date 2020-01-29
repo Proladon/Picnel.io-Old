@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Picnel.io.exe" size="597976">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Picnel.io.exe" size="600536">
       <assemblyIdentity name="Picnel.io" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>v/RQD172q2pf8AIqpJQBH28FDPSRZW7sYBQ65WXHiXg=</dsig:DigestValue>
+        <dsig:DigestValue>MGVcIzrcOOjUC2b+Vsx+YRbjfCkb+CkfPuYZY2AnrPw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -61,7 +61,7 @@ namespace Picnel.io.User_Controls
         // 選擇Favorite
         private void Favorite_Click(object sender, RoutedEventArgs e)
         {
-
+            GloableObject.mainWin.preview_mode.IsChecked = false;
             GloableObject.mainWin.targetFolder_path.Text = this.favorite_path.Text;
             GloableObject.mainWin.targetFolder_path.ToolTip = this.favorite_path.Text;
             GloableObject.curPath = this.favorite_path.Text;
@@ -101,6 +101,7 @@ namespace Picnel.io.User_Controls
                     }
                 }    
             }
+            GloableObject.folderInfo();
             GloableObject.logger($"✔🔄 [Switch Favorite] - Switch to Favorite {this.favorite_aka.Text}", "HighLight");
             Window.GetWindow(this.Parent).Close();
         }

@@ -27,6 +27,7 @@ namespace Picnel.io
     /// <summary>
     /// MainWindow.xaml 的互動邏輯
     /// </summary>
+            
     public partial class MainWindow
     {
         public MainWindow()
@@ -61,14 +62,15 @@ namespace Picnel.io
                 GloableObject.logger($"❌🔎 [Error][Loading File] - No File Exsit.");
                 return;
             }
-            string path = targetFolder_path.Text.ToString();
-            GloableObject.random_image(path);
+            //string path = targetFolder_path.Text.ToString();
+            GloableObject.random_image(GloableObject.curPath);
             imgFileName.Text = GloableObject.img_filename;
         }
 
         // 選取主要路徑
         private void chooseTargetFolder_Btn_Click(object sender, RoutedEventArgs e)
         {
+            preview_mode.IsChecked = false;
             WinForms.FolderBrowserDialog folderDialog = new WinForms.FolderBrowserDialog();
             folderDialog.ShowNewFolderButton = false;
             folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
@@ -80,10 +82,9 @@ namespace Picnel.io
             }
             string sPath = folderDialog.SelectedPath;
             GloableObject.curPath = sPath;
-            targetFolder_path.Text = sPath;
-            targetFolder_path.ToolTip = sPath;
             GloableObject.lastPath = sPath;
             GloableObject.random_image(sPath);
+            GloableObject.folderInfo();
             GloableObject.logger($"✔⚙ [Set Main Directory] - Path: [ {sPath} ]", "HighLight");
         }
 
@@ -381,7 +382,7 @@ namespace Picnel.io
         // 說明文件 Documentation
         private void Documentation_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://app.gitbook.com/@proladon/s/picnel-io/document-shui-ming-wen-jian");
+            System.Diagnostics.Process.Start("https://proladon.gitbook.io/picnel-io/document-shui-ming-wen-jian");
         }
 
         private void infoBtn_LostFocus(object sender, RoutedEventArgs e)
@@ -392,7 +393,7 @@ namespace Picnel.io
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             WebBrowser web = new WebBrowser();
-            System.Diagnostics.Process.Start("https://app.gitbook.com/@proladon/s/picnel-io/changelog-geng-xin-ri-zhi");
+            System.Diagnostics.Process.Start("https://proladon.gitbook.io/picnel-io/changelog-geng-xin-ri-zhi");
         }
 
 
@@ -424,6 +425,7 @@ namespace Picnel.io
         // 資料夾拖曳進 Image Viewer / Main Folder
         private void Grid_Drop(object sender, DragEventArgs e)
         {
+            preview_mode.IsChecked = false;
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -435,6 +437,9 @@ namespace Picnel.io
                     if (file_ex != string.Empty)
                     {
                         GloableObject.change_src(file);
+                        folder_info.Text = "...";
+                        targetFolder_path.Text = System.IO.Path.GetFileName(file);
+                        targetFolder_path.ToolTip = file;
                         GloableObject.logger($"✔🔽 [Load File] - Loaded:[{filename}] Path:[{file}]");
                     }
                     else
@@ -444,6 +449,7 @@ namespace Picnel.io
                         targetFolder_path.Text = file;
                         GloableObject.logger($"✔🔽 [Load Folder] - Loaded:[{filename}] Path:[{file}]");
                         GloableObject.logger($"✔⚙ [Set Main Directory] - Path: [ {file} ]", "HighLight");
+                        GloableObject.folderInfo();
                     }
 
                 }
@@ -462,6 +468,52 @@ namespace Picnel.io
             Properties.Settings.Default.Save();
         }
 
+        // 圖片瀏覽模式
+        // 前後
+        private void preview_mode_Checked(object sender, RoutedEventArgs e)
+        {
+            if (GloableObject.curPath == string.Empty)
+            {
+                preview_mode.IsChecked = false;
+                GloableObject.logger($"❌ [Error] - NotFound Directory. Pls Choose The Main Directoy");
+                return;
+            }
+            else if (GloableObject.curPath != string.Empty || GloableObject.curPath != null)
+            {
+                GloableObject.file_list = new List<string>(Directory.GetFiles(GloableObject.curPath, "*", SearchOption.TopDirectoryOnly));
+                GloableObject.cur_img_position = GloableObject.file_list.IndexOf(GloableObject.img_path);
+            }
+            randomBtn.Visibility = Visibility.Collapsed;
+            pre_img.Visibility = Visibility.Visible;
+            next_img.Visibility = Visibility.Visible;
+        }
+        // 隨機
+        private void preview_mode_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GloableObject.file_list = null;
+            randomBtn.Visibility = Visibility.Visible;
+            pre_img.Visibility = Visibility.Collapsed;
+            next_img.Visibility = Visibility.Collapsed;
+            GC.Collect();
+        }
+        // Pre Img
+        private void pre_img_Click(object sender, RoutedEventArgs e)
+        {
+            if (GloableObject.cur_img_position > 0)
+            {
+                GloableObject.cur_img_position--;
+                GloableObject.change_img(GloableObject.file_list[GloableObject.cur_img_position]);
+            }
+        }
+        // Next Img
+        private void next_img_Click(object sender, RoutedEventArgs e)
+        {
+            if (GloableObject.cur_img_position == 0 || GloableObject.cur_img_position < GloableObject.file_list.Count()-1)
+            {
+                GloableObject.cur_img_position ++;
+                GloableObject.change_img(GloableObject.file_list[GloableObject.cur_img_position]);
+            }
+        }
 
     }
 }

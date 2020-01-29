@@ -19,6 +19,8 @@ namespace Picnel.io.Classes
     {
         //public static Boolean topmost = false;
 
+        public static int cur_img_position = 0;
+        public static List<string> file_list = null;
         public static String curPath = string.Empty;
         public static String lastPath = string.Empty; //紀錄上次選取的資料夾位置 (FolderDiolog)
         public static String img_path = string.Empty;
@@ -27,7 +29,7 @@ namespace Picnel.io.Classes
         public static String file_ex = string.Empty;
         public static String winState = "Normal";
         public static String[] normal_img = { ".jpg", ".jpeg", ".png", ".bmp", ".tif", ".ico", ".apng" };
-        public static String[] gif_img = { ".gif" };
+        public static String[] gif_img = { ".gif", ".webp" };
         public static String[] video = { ".mp4", ".avi" };
         public static BitmapSource img = null;
         public static Folder_Control temp_control = null;
@@ -56,7 +58,72 @@ namespace Picnel.io.Classes
             mainWin.log_scrollViewer.ScrollToEnd();
         }
 
+        // 資料夾資訊
+        public static void folderInfo()
+        {
+            int filesCount = Directory.GetFiles(curPath, "*", SearchOption.TopDirectoryOnly).Length;
+            int foldersCount = Directory.GetDirectories(curPath, "*", SearchOption.TopDirectoryOnly).Length;
+            mainWin.folder_info.Text = $"{filesCount} Files / {foldersCount} Folders";
+            mainWin.targetFolder_path.Text = System.IO.Path.GetFileName(curPath);
+            mainWin.targetFolder_path.ToolTip = curPath;
+        }
+
+
         // 更換圖片路徑
+        public static void change_img(string path)
+        {
+            try
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.DecodePixelWidth = 400;
+                image.UriSource = new Uri(path);
+                image.EndInit();
+
+                if (normal_img.Contains(file_ex))
+                {
+                    mainWin.normal_img_previewer.Source = image;
+                }
+                else if (gif_img.Contains(file_ex))
+                {
+                    ImageBehavior.SetAnimatedSource(mainWin.gif_previewer, image);
+                }
+                else if (video.Contains(file_ex))
+                {
+                    mainWin.normal_img_previewer.Source = new BitmapImage(new Uri(@"\src\file_not_Support.png", UriKind.Relative));
+                    logger("⚠ [Warning] - Not Support Video Files Yet.");
+                    return;
+                }
+                else
+                {
+                    mainWin.normal_img_previewer.Source = new BitmapImage(new Uri(@"\src\file_not_Support.png", UriKind.Relative));
+                    logger($"⚠ [Warning] - Not Support {file_ex} Files.");
+                }
+                mainWin.imgFileName.Text = GloableObject.img_filename;
+
+                mainWin.imgFileName.Text = Path.GetFileName(path);
+                GC.Collect();
+            }
+            catch (System.NotSupportedException)
+            {
+
+            }
+            catch (System.IO.DirectoryNotFoundException)
+            {
+                GloableObject.logger($"❌ [Error] - NotFound Directory. Pls Choose The Main Directoy");
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                GloableObject.logger($"❌ [Error] - No File in this Directory.");
+            }
+            catch (Exception error)
+            {
+                GloableObject.logger($"❌ [Error] - {error}");
+            }
+        }
+
+
         public static BitmapImage change_src(string path)
         {
             var image = new BitmapImage();
@@ -66,6 +133,7 @@ namespace Picnel.io.Classes
             image.UriSource = new Uri(path);
             image.EndInit();
             mainWin.normal_img_previewer.Source = image;
+            mainWin.imgFileName.Text = Path.GetFileName(path);
             GC.Collect();
             return image;
         }
