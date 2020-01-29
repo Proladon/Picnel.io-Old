@@ -7,6 +7,11 @@ In the traditional way, might open up a lot of file expolorer and find out the t
 
 Allow you pinned target folder to the UI and with commonly used option like `Copy`、`Move (cut & past)` by create a control item. then u can just simply click the option to deal with your file.
 
+
+Picnel.io是圖片/圖像分類器（將來可能會支持更多文件類型），讓您更輕鬆地進行分類。  通過創建控件項，可以將目標文件夾固定到UI上，並使用常用選項（如“複製”，“移動”（剪切和過去））。那麼您只需單擊選項即可處理您的文件。
+簡單來說: 可以建立一個 "資料夾捷徑" 在預覽圖片的同時可以做搬移和拷貝
+
+
 ### See more detail in Documentation
 ## [Documentation](https://proladon.gitbook.io/picnel-io/)
 
