@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/badge/Version-1.0.8-brightgreen)
 # Picnel.io
 
 
@@ -16,9 +17,4 @@ Picnel.io是圖片/圖像分類器（將來可能會支持更多文件類型）�
 ## [Documentation](https://proladon.gitbook.io/picnel-io/)
 
 ### Preview
-#### Darkmode / Brightmode
-![img](https://github.com/Proladon/Picnel.io/blob/master/preview/dark.png)
-![img](https://github.com/Proladon/Picnel.io/blob/master/preview/bright.png)
-
-### Copy File
-![img](https://github.com/Proladon/Picnel.io/blob/master/preview/preview_1.gif)
+![img](https://github.com/Proladon/Picnel.io/blob/master/preview/demo_00.gif)
