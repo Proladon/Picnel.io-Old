@@ -8,10 +8,11 @@
         xmlns:us="clr-namespace:Picnel.io.User_Controls"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1080"
         WindowStartupLocation="CenterScreen"
-        MouseDown="Window_DragMove"
+        MouseDown="Window_DragMove"  
         fw:AcrylicWindow.Enabled="True"
         fw:AcrylicWindow.AcrylicWindowStyle="None"
         fw:AcrylicWindow.TintColor="#252A33"
@@ -332,9 +333,19 @@
                        FontSize="15" Foreground="White"  VerticalAlignment="Center" FontFamily="Consolas" FontWeight="Bold" HorizontalAlignment="Center" />
                 <TextBlock x:Name="folder_info" Text="..." Grid.Row="3" FontFamily="Consolas" Foreground="White" HorizontalAlignment="Center"/>
                 <Button Style="{StaticResource ButtonRoundAccentRevealStyle}" Grid.Row="4" Content="Create Target" Click="CreateControl_Click" Margin="5" Foreground="#FF5FFDE0" FontFamily="Consolas" FontWeight="Bold" />
+                <!--
                 <ScrollViewer Grid.Row="5" VerticalScrollBarVisibility="Hidden" Margin="5" Grid.RowSpan="2" AllowDrop="True" DragDrop.Drop="ScrollViewer_Drop">
                     <StackPanel Name="control_panel" Focusable="True">
                     </StackPanel>
+                </ScrollViewer>
+                -->
+                
+                <ScrollViewer Grid.Row="5" AllowDrop="True" DragDrop.Drop="ScrollViewer_Drop">
+                    <ListBox ItemsSource="{Binding Collection}" Name="control_panel"
+                     Grid.Row="5"
+                     dd:DragDrop.IsDragSource="True"
+                     dd:DragDrop.IsDropTarget="True"
+                     dd:DragDrop.DropHandler="{Binding}" Height="263"/>
                 </ScrollViewer>
             </Grid>
             <ScrollViewer x:Name="log_scrollViewer" Grid.Row="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">

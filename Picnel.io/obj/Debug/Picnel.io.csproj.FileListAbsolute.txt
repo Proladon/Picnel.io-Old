@@ -96,3 +96,6 @@ H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Settings_Pages\Logger_Settings
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\Settings_Pages\Logger_Settings.baml
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Folder_Control_Edit.g.cs
 H:\Coding\GitKraken\Picnel.io\Picnel.io\obj\Debug\User_Controls\Folder_Control_Edit.baml
+H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\GongSolutions.WPF.DragDrop.dll
+H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\GongSolutions.WPF.DragDrop.pdb
+H:\Coding\GitKraken\Picnel.io\Picnel.io\bin\Debug\GongSolutions.WPF.DragDrop.xml

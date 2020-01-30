@@ -38,7 +38,7 @@ namespace Picnel.io.User_Controls
         private void Favorite_Create_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Current_Favorite = Favorite_Name.Text;
-            if(Favorite_Name.Text == string.Empty)
+            if (Favorite_Name.Text == string.Empty)
             {
                 MessageBox.Show("Please Enter Favorite Name");
                 return;
@@ -61,7 +61,7 @@ namespace Picnel.io.User_Controls
                     // 存控件
                     Dictionary<string, Dictionary<string, List<string>>> favorite_controls = new Dictionary<string, Dictionary<string, List<string>>>();
                     Dictionary<string, List<string>> controls_list = new Dictionary<string, List<string>>();
-                    
+                    /*
                     int controls_counter = 0;
                     foreach (Folder_Control control in GloableObject.mainWin.control_panel.Children)
                     {
@@ -161,7 +161,8 @@ namespace Picnel.io.User_Controls
                 }
                 Window.GetWindow(this).Close();
                 GloableObject.logger($"✔🤍 [Create Favorite] - Create Favorite {Favorite_Name.Text}.", "HighLight");
-
+                */
+                }
             }
         }
     }

@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Picnel.io.exe.manifest" size="9413">
+    <dependentAssembly dependencyType="install" codebase="Picnel.io.exe.manifest" size="10117">
       <assemblyIdentity name="Picnel.io.exe" version="1.0.0.7" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1XwCkZIP5/EYCyjtWe3uQB0ZOu2XbyZWe547SIH3FnU=</dsig:DigestValue>
+        <dsig:DigestValue>NfCxWa7fZTTBUbPNbmiiVOebc37xagEhW7c+m/nPi8E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

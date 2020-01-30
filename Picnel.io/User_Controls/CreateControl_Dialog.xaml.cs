@@ -84,7 +84,7 @@ namespace Picnel.io.User_Controls
             folder_control.akaLabel.FontFamily = new FontFamily("Consolas Bold");
             folder_control.Height = 25;
             //將Folder_Control 實例 添加到 MainWindow 的 control_panel 中
-            GloableObject.mainWin.control_panel.Children.Add(folder_control);
+            //GloableObject.mainWin.control_panel.Children.Add(folder_control);
             GloableObject.logger($"✔🕹[Create Target Folder Control] AKA :[{folderAKA_label.Text}] ; Path: [{choseFolder_path.Text}]");
             // 清空此Dialog元件的所有訊息
             folderAKA_label.Text = string.Empty;

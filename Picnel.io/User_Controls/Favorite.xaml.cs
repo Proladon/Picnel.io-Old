@@ -70,7 +70,7 @@ namespace Picnel.io.User_Controls
 
             // 控件
 
-            GloableObject.mainWin.control_panel.Children.Clear();
+            //GloableObject.mainWin.control_panel.Children.Clear();
 
             foreach (string name in Properties.Settings.Default.Favorite_Controls_List)
             {
@@ -96,7 +96,7 @@ namespace Picnel.io.User_Controls
                         folder_control.folderPath.Text = data[2];
                         folder_control.akaLabel.ToolTip = data[2];
                         folder_control.Height = 25;
-                        GloableObject.mainWin.control_panel.Children.Add(folder_control);
+                        //GloableObject.mainWin.control_panel.Children.Add(folder_control);
 
                     }
                 }    

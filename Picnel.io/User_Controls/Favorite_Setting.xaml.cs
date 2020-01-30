@@ -107,7 +107,7 @@ namespace Picnel.io.User_Controls
 
                 Dictionary<string, Dictionary<string, List<string>>> favorite_controls = new Dictionary<string, Dictionary<string, List<string>>>();
                 Dictionary<string, List<string>> controls_list = new Dictionary<string, List<string>>();
-
+                /*
                 int controls_counter = 0;
                 foreach (Folder_Control control in GloableObject.mainWin.control_panel.Children)
                 {
@@ -137,6 +137,7 @@ namespace Picnel.io.User_Controls
                 Window.GetWindow(this).Close();
                 GloableObject.logger($"✔🤍 [Save Favorite] - Success Save Favorite {Properties.Settings.Default.Current_Favorite}.", "HighLight");
                 Properties.Settings.Default.Save();
+                */
             }
         }
 

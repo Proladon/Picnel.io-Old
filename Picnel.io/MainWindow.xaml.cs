@@ -21,6 +21,8 @@ using WpfAnimatedGif;
 using Picnel.io.User_Controls;
 using System.Threading;
 using Newtonsoft.Json;
+using GongSolutions.Wpf.DragDrop;
+using System.Collections.ObjectModel;
 
 namespace Picnel.io
 {
@@ -398,6 +400,7 @@ namespace Picnel.io
 
 
         // 資料夾拖曳進Target Folder
+        /*
         private void ScrollViewer_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -415,12 +418,16 @@ namespace Picnel.io
                         folder_Control.folderPath.Text = file_path;
                         folder_Control.ToolTip = file_path;
                         folder_Control.Height = 25;
-                        control_panel.Children.Add(folder_Control);
+                        
+                        ListBoxItem itm = new ListBoxItem();
+                        itm.Content = folder_Control;
+                        control_panel.Items.Add(itm);
+                        //control_panel.Children.Add(folder_Control);
                         GloableObject.logger($"✔🕹[Create Target Folder Control] AKA :[{filename}] ; Path: [{file_path}]");
                     }
                 }
             }
-        }
+        }*/
 
         // 資料夾拖曳進 Image Viewer / Main Folder
         private void Grid_Drop(object sender, DragEventArgs e)
@@ -515,5 +522,64 @@ namespace Picnel.io
             }
         }
 
+
+        private void ScrollViewer_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file_path in files)
+                {
+                    string filename = System.IO.Path.GetFileName(file_path);
+                    // 判斷是否為資料夾
+                    if (System.IO.Path.GetExtension(filename) == string.Empty)
+                    {
+                        // 生成Controls
+                        Folder_Control folder_Control = new Folder_Control();
+                        folder_Control.akaLabel.Text = filename;
+                        folder_Control.folderPath.Text = file_path;
+                        folder_Control.ToolTip = file_path;
+                        folder_Control.Height = 25;
+
+                        ListBoxItem itm = new ListBoxItem();
+                        itm.Content = folder_Control;
+                        control_panel.Items.Add(itm);
+                        //control_panel.Children.Add(folder_Control);
+                        GloableObject.logger($"✔🕹[Create Target Folder Control] AKA :[{filename}] ; Path: [{file_path}]");
+                    }
+                }
+            }
+        }
+    }
+
+    // ListBox Drag Drop Handler
+    class ExampleViewModel : IDropTarget
+    {
+        public ObservableCollection<ExampleItemViewModel> Items;
+
+        void IDropTarget.DragOver(IDropInfo dropInfo)
+        {
+            ExampleItemViewModel sourceItem = dropInfo.Data as ExampleItemViewModel;
+            ExampleItemViewModel targetItem = dropInfo.TargetItem as ExampleItemViewModel;
+
+            if (sourceItem != null && targetItem != null && targetItem.CanAcceptChildren)
+            {
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
+                dropInfo.Effects = DragDropEffects.Copy;
+            }
+        }
+
+        void IDropTarget.Drop(IDropInfo dropInfo)
+        {
+            ExampleItemViewModel sourceItem = dropInfo.Data as ExampleItemViewModel;
+            ExampleItemViewModel targetItem = dropInfo.TargetItem as ExampleItemViewModel;
+            targetItem.Children.Add(sourceItem);
+        }
+    }
+
+    class ExampleItemViewModel
+    {
+        public bool CanAcceptChildren { get; set; }
+        public ObservableCollection<ExampleItemViewModel> Children { get; private set; }
     }
 }
