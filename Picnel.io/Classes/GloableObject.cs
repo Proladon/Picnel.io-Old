@@ -83,10 +83,15 @@ namespace Picnel.io.Classes
 
                 if (normal_img.Contains(file_ex))
                 {
+                    mainWin.gif_previewer.Visibility = System.Windows.Visibility.Collapsed;
+                    mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Visible;
                     mainWin.normal_img_previewer.Source = image;
                 }
                 else if (gif_img.Contains(file_ex))
                 {
+                    WpfAnimatedGif.ImageBehavior.SetAutoStart(mainWin.gif_previewer, true);
+                    mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Collapsed;
+                    mainWin.gif_previewer.Visibility = System.Windows.Visibility.Visible;
                     ImageBehavior.SetAnimatedSource(mainWin.gif_previewer, image);
                 }
                 else if (video.Contains(file_ex))
