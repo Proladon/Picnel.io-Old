@@ -80,15 +80,20 @@ namespace Picnel.io.Classes
                 image.DecodePixelWidth = 400;
                 image.UriSource = new Uri(path);
                 image.EndInit();
+                GloableObject.img_path = path;
+                GloableObject.img_filename = System.IO.Path.GetFileName(path);
+                GloableObject.file_ex = Path.GetExtension(img_filename).ToLower();
 
                 if (normal_img.Contains(file_ex))
                 {
+                    logger("img");
                     mainWin.gif_previewer.Visibility = System.Windows.Visibility.Collapsed;
                     mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Visible;
                     mainWin.normal_img_previewer.Source = image;
                 }
                 else if (gif_img.Contains(file_ex))
                 {
+                    logger("gif");
                     WpfAnimatedGif.ImageBehavior.SetAutoStart(mainWin.gif_previewer, true);
                     mainWin.normal_img_previewer.Visibility = System.Windows.Visibility.Collapsed;
                     mainWin.gif_previewer.Visibility = System.Windows.Visibility.Visible;
@@ -102,6 +107,7 @@ namespace Picnel.io.Classes
                 }
                 else
                 {
+                    logger("else");
                     mainWin.normal_img_previewer.Source = new BitmapImage(new Uri(@"\src\file_not_Support.png", UriKind.Relative));
                     logger($"⚠ [Warning] - Not Support {file_ex} Files.");
                 }

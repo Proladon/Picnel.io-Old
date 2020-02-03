@@ -33,7 +33,6 @@ namespace Picnel.io
         public MainWindow()
         {
             InitializeComponent();
-            WpfAnimatedGif.ImageBehavior.SetAutoStart(gif_previewer, false);
         }
 
         private void Window_DragMove(object sender, MouseButtonEventArgs e)
