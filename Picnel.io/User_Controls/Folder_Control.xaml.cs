@@ -39,6 +39,7 @@ namespace Picnel.io.User_Controls
         {
             String newPath = folderPath.Text.ToString();
             GloableObject.moveTo(GloableObject.img_path, newPath);
+            GloableObject.folderInfo();
         }
 
         // 複製操作

@@ -150,6 +150,7 @@ namespace Picnel.io
                     System.IO.File.Delete(GloableObject.img_path);
                     GloableObject.logger($"♻🗑 [Delete File] - FileName: [ {GloableObject.img_filename} ]");
                     GloableObject.random_image(GloableObject.curPath);
+                    GloableObject.folderInfo();
                 }
                 else
                 {
