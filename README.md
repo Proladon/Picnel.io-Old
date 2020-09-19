@@ -1,6 +1,7 @@
 ![Version](https://img.shields.io/badge/Version-1.0.8.1-brightgreen)
 # Picnel.io
-
+## 🚧 This repo is no longer maintained!
+## 🌟 The new version can be found [Picnel.io-2](https://github.com/Proladon/Picnel.io-2)
 
 In the traditional way, might open up a lot of file expolorer and find out the target folder u want to classifie. But when you have more than hundred even thousand files, that will be a hard job to done and very inefficient.
 
