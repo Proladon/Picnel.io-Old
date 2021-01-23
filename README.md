@@ -1,5 +1,5 @@
 ![Version](https://img.shields.io/badge/Version-1.0.8.1-brightgreen)
-# Picnel.io (此板不再維護，請至 Picnel.io 2)
+# Picnel.io (此版本不再維護，請至 Picnel.io 2)
 ## 🚧 此專案不再維護! This repo is no longer maintained!
 ## 🌟 請至新版本 [Picnel.io-2](https://github.com/Proladon/Picnel.io-2)
 
